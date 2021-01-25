@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Project">
+    <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyTitle>KanojoWorks</AssemblyTitle>
+    <AssemblyName>KanojoWorks</AssemblyName>
+    <Description>A visual novel framework built on top of the osu-framework.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591;NU5104</NoWarn>
+    <DefineConstants>$(DefineConstants);JETBRAINS_ANNOTATIONS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Label="Nuget">
+    <Title>KanojoWorks</Title>
+    <PackageId>gg.mirai.kanojoworks</PackageId>
+    <PackageReleaseNotes>Automated release.</PackageReleaseNotes>
+    <PackageTags>osu game framework kanojo works visual novel</PackageTags>
+  </PropertyGroup>
+  <PropertyGroup Label="Sourcelink3" Condition=" '$(EnableSourceLink)' == 'true' ">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup Label="Package References">
+    <PackageReference Include="ppy.osu.Framework" Version="2021.118.0" />
+  </ItemGroup>
+</Project>
