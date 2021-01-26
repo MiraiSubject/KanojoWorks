@@ -1,0 +1,9 @@
+﻿{
+  "solution": {
+    "path": "KanojoWorks.sln",
+    "projects": [
+      "KanojoWorks\\KanojoWorks.Desktop.csproj",
+      "KanojoWorks.Tests\\KanojoWorks.Tests.csproj",
+    ]
+  }
+}
