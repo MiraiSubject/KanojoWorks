@@ -11,7 +11,7 @@
                 "-p:GenerateFullPaths=true",
                 "-m",
                 "-verbosity:m",
-                "ExampleNovel.Game.Tests"
+                "KanojoWorks.Tests"
             ],
             "group": "build",
             "problemMatcher": "$msCompile"
@@ -26,45 +26,18 @@
                 "-p:GenerateFullPaths=true",
                 "-m",
                 "-verbosity:m",
-                "ExampleNovel.Game.Tests"
+                "KanojoWorks.Tests"
             ],
             "group": "build",
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "Build (Desktop, Debug)",
-            "type": "shell",
-            "command": "dotnet",
-            "args": [
-                "build",
-                "-p:GenerateFullPaths=true",
-                "-m",
-                "-verbosity:m",
-                "ExampleNovel.Desktop"
-            ],
-            "group": "build",
-            "problemMatcher": "$msCompile"
-        }, {
-            "label": "Build (Desktop, Release)",
-            "type": "shell",
-            "command": "dotnet",
-            "args": [
-                "build",
-                "-p:Configuration=Release",
-                "-p:GenerateFullPaths=true",
-                "-m",
-                "-verbosity:m",
-                "ExampleNovel.Desktop"
-            ],
-            "group": "build",
-            "problemMatcher": "$msCompile"
-        }, {
             "label": "Restore",
             "type": "shell",
             "command": "dotnet",
             "args": [
                 "restore",
-                "ExampleNovel.sln"
+                "KanojoWorks.sln"
             ],
             "problemMatcher": []
         }
