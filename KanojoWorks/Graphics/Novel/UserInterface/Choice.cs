@@ -4,7 +4,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Events;
-using KanojoWorks.Graphics;
+using KanojoWorks.Graphics.UserInterface;
 
 namespace KanojoWorks.Novel.UserInterface
 {

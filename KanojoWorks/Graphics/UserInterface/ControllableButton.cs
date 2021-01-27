@@ -2,7 +2,7 @@ using osu.Framework.Bindables;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
 
-namespace KanojoWorks.Graphics
+namespace KanojoWorks.Graphics.UserInterface
 {
     public abstract class ControllableButton : Button
     {

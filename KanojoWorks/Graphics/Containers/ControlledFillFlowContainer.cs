@@ -4,7 +4,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Bindings;
 using KanojoWorks.Input;
 
-namespace KanojoWorks.Graphics.Containers
+namespace KanojoWorks.Graphics.UserInterface.Containers
 {
     /// <summary>
     /// A <see cref="osu.Framework.Graphics.Containers.FillFlowContainer{T}"/> that has built-in selection
@@ -16,7 +16,7 @@ namespace KanojoWorks.Graphics.Containers
         private int selectionIndex = -1;
 
         /// <summary>
-        /// Whether <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/> should highlight the first button by default.
+        /// Whether <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/> should highlight the first button by default.
         /// </summary>
         public bool HighlightFirstButton = false;
 
@@ -48,14 +48,14 @@ namespace KanojoWorks.Graphics.Containers
         }
 
         /// <summary>
-        /// Deselect all <see cref="KanojoWorks.Graphics.ControllableButton"/>
-        /// in a <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/>
+        /// Deselect all <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
+        /// in a <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/>
         /// </summary>
         public void Deselect() => setSelected(-1);
 
         /// <summary>
-        /// Select a <see cref="KanojoWorks.Graphics.ControllableButton"/>
-        /// in a <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/>
+        /// Select a <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
+        /// in a <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/>
         /// </summary>
         public void Select(T selected) => setSelected(this.IndexOf(selected));
 
@@ -126,13 +126,13 @@ namespace KanojoWorks.Graphics.Containers
         }
 
         /// <summary>
-        /// Select/Deselect buttons using <see cref="KanojoWorks.Graphics.ControllableButton.Selected"/> of <see cref="KanojoWorks.Graphics.ControllableButton"/>
+        /// Select/Deselect buttons using <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton.Selected"/> of <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
         /// </summary>
-        /// <param name="selection"> The <see cref="KanojoWorks.Graphics.ControllableButton"/>' that will be selected and deselected </param>
-        /// <param name="isSelected">The selected boolean of the <see cref="KanojoWorks.Graphics.ControllableButton"/></param>
+        /// <param name="selection"> The <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>' that will be selected and deselected </param>
+        /// <param name="isSelected">The selected boolean of the <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/></param>
         /// <remarks>
         /// Use this only to bind to the <see cref="osu.Framework.Bindables.Bindable{T}.ValueChanged" />
-        /// of a <see cref="KanojoWorks.Graphics.ControllableButton"/>
+        /// of a <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
         /// </remarks>
         public void buttonSelectionChanged(T selection, bool isSelected)
         {
