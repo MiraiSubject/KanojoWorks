@@ -8,7 +8,7 @@ namespace KanojoWorks.Graphics.Containers
 {
     /// <summary>
     /// A <see cref="osu.Framework.Graphics.Containers.FillFlowContainer{T}"/> that has built-in selection
-    /// and press controls for keyboard and controller.
+    /// and control support for keyboard and controller.
     /// </summary>
     public class ControllableFillFlowContainer<T> : FillFlowContainer<T>, IKeyBindingHandler<InputAction>
         where T : ControllableButton

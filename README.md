@@ -17,7 +17,7 @@ This framework is intended to provide a user-friendly, but also advanced, visual
 
 ### Building
 
-Build configurations for the recommended IDEs (listed above) are included. You should use the provided Build/Run functionality of your IDE to get things going. When testing or building new components, it's highly encouraged you use the `VisualTests` project/configuration. The goal is to eventually release an example visual novel as well so your changes in context.
+Build configurations for the recommended IDEs (listed above) are included. You should use the provided Build/Run functionality of your IDE to get things going. When testing or building new components, it's highly encouraged you use the `VisualTests` project/configuration. The goal is to eventually release an example visual novel as well so can see your changes in context.
 
 - Visual Studio / Rider users should load the project via one of the platform-specific .slnf files, rather than the main .sln. This will allow access to template run configurations.
 
