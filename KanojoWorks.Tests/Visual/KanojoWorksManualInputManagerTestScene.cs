@@ -1,5 +1,3 @@
-using osu.Framework.Allocation;
-using osu.Framework.Testing;
 using osu.Framework.Testing.Input;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;

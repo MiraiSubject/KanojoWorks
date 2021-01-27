@@ -16,14 +16,6 @@ namespace KanojoWorks.Tests.Visual
         private ChoiceContainer choiceContainer;
         private GlobalInputContainer globalInputContainer;
 
-        private TestChoice choice1;
-        private TestChoice choice2;
-        private TestChoice choice3;
-
-        public TestSceneChoiceContainer()
-        {
-        }
-
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -40,9 +32,9 @@ namespace KanojoWorks.Tests.Visual
                 Origin = Anchor.Centre,
                 Choices = new[]
                 {
-                    choice1 = new TestChoice(1),
-                    choice2 = new TestChoice(2),
-                    choice3 = new TestChoice(3)
+                    new TestChoice(1),
+                    new TestChoice(2),
+                    new TestChoice(3)
                 }
             };
 
@@ -76,7 +68,7 @@ namespace KanojoWorks.Tests.Visual
         {
             showContainer();
 
-            AddStep("Press up", () => press(InputAction.Down));
+            AddStep("Press down", () => press(InputAction.Down));
             AddAssert("Last button is selected", () => choiceContainer.Choices?.First().Selected.Value ?? false);
         }
 
@@ -88,7 +80,6 @@ namespace KanojoWorks.Tests.Visual
 
         private class TestChoice : Choice
         {
-            public bool testSelected;
             public TestChoice(int number)
             {
                 Text = $"Example Choice {number}";
@@ -96,11 +87,7 @@ namespace KanojoWorks.Tests.Visual
                 Anchor = Anchor.Centre;
                 Origin = Anchor.Centre;
                 BackgroundColour = Colour4.Brown;
-                Action = () =>
-                {
-                    Logger.Log($"Choice ${number} was selected");
-                    testSelected = true;
-                };
+                Action = () => Logger.Log($"Choice ${number} was selected");
             }
         }
     }
