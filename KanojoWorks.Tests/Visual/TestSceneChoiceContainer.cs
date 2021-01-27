@@ -78,7 +78,7 @@ namespace KanojoWorks.Tests.Visual
             globalInputContainer.TriggerReleased(action);
         }
 
-        private class TestChoice : Choice
+        private class TestChoice : KanojoWorksButton
         {
             public TestChoice(int number)
             {

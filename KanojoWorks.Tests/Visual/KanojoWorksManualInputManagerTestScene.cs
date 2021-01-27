@@ -15,8 +15,8 @@ namespace KanojoWorks.Tests.Visual
         private Container content;
         protected readonly ManualInputManager InputManager;
 
-        private readonly Choice buttonTest;
-        private readonly Choice buttonLocal;
+        private readonly KanojoWorksButton buttonTest;
+        private readonly KanojoWorksButton buttonLocal;
 
         protected KanojoWorksManualInputManagerTestScene()
         {
@@ -66,13 +66,13 @@ namespace KanojoWorks.Tests.Visual
                                     Direction = FillDirection.Horizontal,
                                     Children = new Drawable[]
                                     {
-                                        buttonLocal = new Choice
+                                        buttonLocal = new KanojoWorksButton
                                         {
                                             Text = "local",
                                             Size = new Vector2(50, 30),
                                             Action = returnUserInput
                                         },
-                                        buttonTest = new Choice
+                                        buttonTest = new KanojoWorksButton
                                         {
                                             Text = "test",
                                             Size = new Vector2(50, 30),

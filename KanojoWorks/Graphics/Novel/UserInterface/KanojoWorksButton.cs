@@ -8,7 +8,7 @@ using KanojoWorks.Graphics.UserInterface;
 
 namespace KanojoWorks.Novel.UserInterface
 {
-    public class Choice : ControllableButton
+    public class KanojoWorksButton : ControllableButton
     {
         protected override Container<Drawable> Content { get; }
         protected Box HoverArea;
@@ -34,7 +34,7 @@ namespace KanojoWorks.Novel.UserInterface
             }
         }
 
-        public Choice()
+        public KanojoWorksButton()
         {
             Height = 40;
 
@@ -50,7 +50,6 @@ namespace KanojoWorks.Novel.UserInterface
                         RelativeSizeAxes = Axes.Both,
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Colour = Colour4.Blue,
                     },
                     HoverArea = new Box
                     {
