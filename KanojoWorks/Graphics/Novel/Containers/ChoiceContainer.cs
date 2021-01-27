@@ -3,7 +3,6 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Bindings;
-using osu.Framework.Input.Events;
 using KanojoWorks.Input;
 using KanojoWorks.Novel.UserInterface;
 using KanojoWorks.Graphics.UserInterface.Containers;
