@@ -70,12 +70,18 @@ namespace KanojoWorks.Tests.Visual
                                         {
                                             Text = "local",
                                             Size = new Vector2(50, 30),
+                                            Masking = true,
+                                            CornerRadius = 5,
+                                            BackgroundColour = Colour4.BlueViolet,
                                             Action = returnUserInput
                                         },
                                         buttonTest = new KanojoWorksButton
                                         {
                                             Text = "test",
                                             Size = new Vector2(50, 30),
+                                            Masking = true,
+                                            CornerRadius = 5,
+                                            BackgroundColour = Colour4.BlueViolet,
                                             Action = returnTestInput
                                         }
                                     }
