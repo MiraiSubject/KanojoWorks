@@ -6,7 +6,7 @@ using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Events;
 using KanojoWorks.Graphics;
 
-namespace KanojoWorks.Novel.Components
+namespace KanojoWorks.Novel.UserInterface
 {
     public class Choice : ControllableButton
     {

@@ -4,7 +4,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Logging;
 using KanojoWorks.Input;
-using KanojoWorks.Novel.Components;
+using KanojoWorks.Novel.UserInterface;
 using KanojoWorks.Novel.Containers;
 using osuTK;
 

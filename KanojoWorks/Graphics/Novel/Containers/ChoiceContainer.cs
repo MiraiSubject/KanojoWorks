@@ -5,7 +5,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Bindings;
 using osu.Framework.Input.Events;
 using KanojoWorks.Input;
-using KanojoWorks.Novel.Components;
+using KanojoWorks.Novel.UserInterface;
 using KanojoWorks.Graphics.Containers;
 
 namespace KanojoWorks.Novel.Containers
