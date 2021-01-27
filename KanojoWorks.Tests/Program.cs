@@ -7,9 +7,9 @@ namespace KanojoWorks.Tests
     {
         public static void Main()
         {
-            using GameHost host = Host.GetSuitableHost("visual-tests");
-            using var game = new KanojoWorksTestBrowser();
-            host.Run(game);
+            using (GameHost host = Host.GetSuitableHost("visual-tests"))
+            using (var game = new KanojoWorksTestBrowser())
+                host.Run(game);
         }
     }
 }

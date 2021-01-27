@@ -8,7 +8,7 @@ using KanojoWorks.Novel.UserInterface;
 using KanojoWorks.Novel.Containers;
 using osuTK;
 
-namespace KanojoWorks.Tests.Visual
+namespace KanojoWorks.Tests.Visual.Containers
 {
     [Description("Container for novel dialogue options")]
     public class TestSceneChoiceContainer : KanojoWorksManualInputManagerTestScene
@@ -46,12 +46,22 @@ namespace KanojoWorks.Tests.Visual
         private void hideContainer() => AddStep("Hide choice container", () => choiceContainer.Hide());
 
         [Test]
-        public void TestSelectWithoutSelection()
+        public void TestSelectWithoutSelectionNoDefault()
         {
             showContainer();
 
             AddStep("Press select", () => press(InputAction.Select));
             AddAssert("Test selected", () => !choiceContainer.Choices?.First().Selected.Value ?? true);
+        }
+
+        [Test]
+        public void TestSelectWithoutSelectionWithDefault()
+        {
+            AddStep("Enable highlight first button", () => choiceContainer.FirstIsHighlighted = true);
+
+            showContainer();
+            AddStep("Press select", () => press(InputAction.Select));
+            AddAssert("Test selected", () => choiceContainer.Choices?.First().Selected.Value ?? false);
         }
 
         [Test]
@@ -69,7 +79,34 @@ namespace KanojoWorks.Tests.Visual
             showContainer();
 
             AddStep("Press down", () => press(InputAction.Down));
-            AddAssert("Last button is selected", () => choiceContainer.Choices?.First().Selected.Value ?? false);
+            AddAssert("First button is selected", () => choiceContainer.Choices?.First().Selected.Value ?? false);
+        }
+
+        [Test]
+        public void TestWrappingIfEnabled()
+        {
+            showContainer();
+            AddAssert("Wrapping is enabled", () => choiceContainer.WrapsButtons);
+            AddStep("Press down", () => press(InputAction.Down));
+            AddStep("Press down", () => press(InputAction.Down));
+            AddStep("Press down", () => press(InputAction.Down));
+            AddStep("Press down", () => press(InputAction.Down));
+            AddAssert("First button is selected", () => choiceContainer.Choices?.First().Selected.Value ?? false);
+        }
+
+        [Test]
+        public void TestWrappingIfDisabled()
+        {
+            // Enable firstHighlighted first then disable wrapping to prevent exception.
+            AddStep("Enable highlight first button", () => choiceContainer.FirstIsHighlighted = true);
+            AddStep("Disable button wrapping", () => choiceContainer.WrapsButtons = false);
+
+            showContainer();
+            AddStep("Press down", () => press(InputAction.Down));
+            AddStep("Press down", () => press(InputAction.Down));
+            AddStep("Press down", () => press(InputAction.Down));
+            AddStep("Press down", () => press(InputAction.Down));
+            AddAssert("Last button is selected", () => choiceContainer.Choices?.Last().Selected.Value ?? false);
         }
 
         private void press(InputAction action)

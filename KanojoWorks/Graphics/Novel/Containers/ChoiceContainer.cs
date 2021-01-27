@@ -16,6 +16,18 @@ namespace KanojoWorks.Novel.Containers
         protected ControllableFillFlowContainer<KanojoWorksButton> FillFlow;
         public IEnumerable<KanojoWorksButton> Choices;
 
+        public bool FirstIsHighlighted
+        {
+            get => FillFlow.FirstIsHighlighted;
+            set => FillFlow.FirstIsHighlighted = value;
+        }
+
+        public bool WrapsButtons
+        {
+            get => FillFlow.WrapsButtons;
+            set => FillFlow.WrapsButtons = value;
+        }
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -24,7 +36,7 @@ namespace KanojoWorks.Novel.Containers
                 RelativeSizeAxes = Axes.Both,
                 Direction = FillDirection.Vertical,
                 Spacing = new osuTK.Vector2(10),
-                ChildrenEnumerable = Choices
+                ChildrenEnumerable = Choices,
             };
 
             foreach (var choice in Choices)

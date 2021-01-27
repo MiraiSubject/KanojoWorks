@@ -18,7 +18,25 @@ namespace KanojoWorks.Graphics.UserInterface.Containers
         /// <summary>
         /// Whether <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/> should highlight the first button by default.
         /// </summary>
-        public bool HighlightFirstButton = false;
+        public bool FirstIsHighlighted = false;
+
+        /// <summary>
+        /// Whether <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/> should wrap the buttons for selection.
+        /// </summary>
+        public bool WrapsButtons 
+        {
+            get => flowWrapping;
+            set
+            {
+                if (!FirstIsHighlighted && !value)
+                    throw new InvalidOperationException($"Cannot disable wrapping if {nameof(FirstIsHighlighted)} is {value}");
+
+                flowWrapping = value;
+            }
+        }
+
+        private bool flowWrapping = true;
+
 
         /// <summary>
         /// Action that is invoked when <see cref="InputAction.Select"/> is triggered.
@@ -43,7 +61,7 @@ namespace KanojoWorks.Graphics.UserInterface.Containers
         {
             base.LoadComplete();
 
-            if (HighlightFirstButton)
+            if (FirstIsHighlighted)
                 setSelected(0);
         }
 
@@ -64,17 +82,11 @@ namespace KanojoWorks.Graphics.UserInterface.Containers
             switch (action)
             {
                 case InputAction.Left:
-                    if (selectionIndex == -1 || selectionIndex == 0)
-                        setSelected(this.Count - 1);
-                    else
-                        setSelected(selectionIndex - 1);
+                    selectPrevious();
                     return true;
 
                 case InputAction.Right:
-                    if (selectionIndex == -1 || selectionIndex == this.Count - 1)
-                        setSelected(0);
-                    else
-                        setSelected(selectionIndex + 1);
+                    selectNext();
                     return true;
 
                 case InputAction.Select:
@@ -90,17 +102,10 @@ namespace KanojoWorks.Graphics.UserInterface.Containers
             switch (action)
             {
                 case InputAction.Up:
-                    if (selectionIndex == -1 || selectionIndex == 0)
-                        setSelected(this.Count - 1);
-                    else
-                        setSelected(selectionIndex - 1);
+                    selectPrevious();
                     return true;
-
                 case InputAction.Down:
-                    if (selectionIndex == -1 || selectionIndex == this.Count - 1)
-                        setSelected(0);
-                    else
-                        setSelected(selectionIndex + 1);
+                    selectNext();
                     return true;
 
                 case InputAction.Select:
@@ -109,6 +114,32 @@ namespace KanojoWorks.Graphics.UserInterface.Containers
             }
 
             return false;
+        }
+
+        private void selectNext()
+        {
+            if (selectionIndex == -1 || selectionIndex == this.Count - 1)
+            {
+                if (flowWrapping)
+                    setSelected(0);
+                else
+                    return;
+            }
+            else
+                setSelected(selectionIndex + 1);
+        }
+
+        private void selectPrevious()
+        {
+            if (selectionIndex == -1 || selectionIndex == 0)
+            {
+                if (flowWrapping)
+                    setSelected(this.Count -1);
+                else
+                    return;
+            }
+            else
+                setSelected(selectionIndex - 1);
         }
 
         public bool OnPressed(InputAction action)
