@@ -69,6 +69,9 @@ namespace KanojoWorks.Novel.UserInterface
                 }
             });
 
+            Enabled.BindValueChanged(enabledChanged, true);
+            Enabled.ValueChanged += enabledChanged;
+
             Selected.ValueChanged += selectionChanged;
         }
 
@@ -106,5 +109,11 @@ namespace KanojoWorks.Novel.UserInterface
 
             base.OnMouseUp(e);
         }
+
+        private void enabledChanged(ValueChangedEvent<bool> e)
+        {
+            this.FadeColour(e.NewValue ? Colour4.White : Colour4.Gray, 200, Easing.OutQuint);
+        }
+
     }
 }
