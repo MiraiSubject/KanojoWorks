@@ -8,6 +8,8 @@ namespace KanojoWorks.Graphics.UserInterface
     {
         public readonly BindableBool Selected = new BindableBool();
 
+        // From: https://github.com/ppy/osu/blob/97879c3c98bcc19012c52e86287b2b8c8f0357ab/osu.Game/Screens/Play/GameplayMenuOverlay.cs#L298
+        // required to ensure keyboard navigation always starts from an extremity (unless the cursor is moved)
         protected override bool OnMouseMove(MouseMoveEvent e)
         {
             Selected.Value = true;
