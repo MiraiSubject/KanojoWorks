@@ -5,7 +5,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Logging;
 using KanojoWorks.Input;
 using KanojoWorks.Novel.UserInterface;
-using KanojoWorks.Novel.Containers;
+using KanojoWorks.Graphics.Containers;
 using osuTK;
 
 namespace KanojoWorks.Tests.Visual.Containers

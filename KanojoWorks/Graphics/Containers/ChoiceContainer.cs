@@ -5,9 +5,8 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Bindings;
 using KanojoWorks.Input;
 using KanojoWorks.Novel.UserInterface;
-using KanojoWorks.Graphics.UserInterface.Containers;
 
-namespace KanojoWorks.Novel.Containers
+namespace KanojoWorks.Graphics.Containers
 {
     public class ChoiceContainer : VisibilityContainer, IKeyBindingHandler<InputAction>
     {

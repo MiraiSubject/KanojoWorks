@@ -2,9 +2,10 @@ using System;
 using System.Linq;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Bindings;
+using KanojoWorks.Graphics.UserInterface;
 using KanojoWorks.Input;
 
-namespace KanojoWorks.Graphics.UserInterface.Containers
+namespace KanojoWorks.Graphics.Containers
 {
     /// <summary>
     /// A <see cref="osu.Framework.Graphics.Containers.FillFlowContainer{T}"/> that has built-in selection
@@ -16,12 +17,12 @@ namespace KanojoWorks.Graphics.UserInterface.Containers
         private int selectionIndex = -1;
 
         /// <summary>
-        /// Whether <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/> should highlight the first button by default.
+        /// Whether <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/> should highlight the first button by default.
         /// </summary>
         public bool FirstIsHighlighted = false;
 
         /// <summary>
-        /// Whether <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/> should wrap the buttons for selection.
+        /// Whether <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/> should wrap the buttons for selection.
         /// </summary>
         public bool WrapsButtons 
         {
@@ -67,13 +68,13 @@ namespace KanojoWorks.Graphics.UserInterface.Containers
 
         /// <summary>
         /// Deselect all <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
-        /// in a <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/>
+        /// in a <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/>
         /// </summary>
         public void Deselect() => setSelected(-1);
 
         /// <summary>
         /// Select a <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
-        /// in a <see cref="KanojoWorks.Graphics.UserInterface.Containers.ControllableFillFlowContainer{T}"/>
+        /// in a <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/>
         /// </summary>
         public void Select(T selected) => setSelected(this.IndexOf(selected));
 
