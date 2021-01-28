@@ -36,11 +36,17 @@ namespace KanojoWorks.Configuration
             Set(KanojoWorksSetting.NovelBGMVolume, 0.8, 0, 1, 0.01);
             Set(KanojoWorksSetting.VoiceMasterVolume, 1, 0, 1, 0.01);
             Set(KanojoWorksSetting.NovelSFXVolume, 0.95, 0, 1, 0.01);
+
+            // Scaling defaults
+            Set(KanojoWorksSetting.ScalingMode, ScalingMode.MaintainAspectRatio);
+            Set(KanojoWorksSetting.Scale, 0.8f, 0.2f, 1f);
         }
     }
 
     public enum KanojoWorksSetting
     {
+        ScalingMode,
+        Scale,
         TextDisplaySpeed,
         AutoPlaySpeed,
         SkipUnreadText,
