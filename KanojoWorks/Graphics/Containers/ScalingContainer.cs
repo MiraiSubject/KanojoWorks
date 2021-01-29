@@ -13,8 +13,6 @@ namespace KanojoWorks.Graphics.Containers
     public class ScalingContainer : Container
     {
         private Bindable<float> scaleBindable;
-        private Bindable<float> sizeY;
-
         // The mode that the container will transform on
         private readonly ScalingMode? targetMode;
         private Bindable<ScalingMode> scalingMode;
