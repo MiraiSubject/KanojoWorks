@@ -7,9 +7,9 @@ using osu.Framework.Bindables;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Textures;
 using osu.Framework.IO.Stores;
 using osu.Framework.Platform;
-using osu.Framework.Graphics.Shapes;
 using osuTK;
 
 namespace KanojoWorks
@@ -55,6 +55,14 @@ namespace KanojoWorks
 
             displays = Host.Window.Displays;
             currentDisplay = Host.Window.CurrentDisplayBindable;
+
+            var builtInResources = new NamespacedResourceStore<byte[]>(new DllResourceStore(typeof(KanojoWorksGameBase).Assembly), @"Resources");
+           
+            Resources.AddStore(builtInResources);
+            var Textures = new TextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, @"Textures")));
+
+            dependencies.Cache(Textures);
+            dependencies.CacheAs(this);
         }
 
         private void updateContainerSize()
