@@ -7,10 +7,10 @@ using KanojoWorks.Graphics.UserInterface;
 
 namespace KanojoWorks.Tests.Visual
 {
-    public class KanojoWorksLoaderTestScene : KanojoWorksTestScene
+    public class KanojoWorksLoadingIndicatorTestScene : KanojoWorksTestScene
     {
         private LoadingIndicator loading;
-        public KanojoWorksLoaderTestScene()
+        public KanojoWorksLoadingIndicatorTestScene()
         {
             Child = new Container
             {
