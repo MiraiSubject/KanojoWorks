@@ -46,6 +46,7 @@ namespace KanojoWorks.Graphics.Containers
 
             scaleBindable = config.GetBindable<float>(KanojoWorksSetting.Scale);
             scaleBindable.ValueChanged += _ => updateSize();
+            scaleBindable.BindValueChanged((v) => updateSize(), true);
         }
 
         protected override void LoadComplete()

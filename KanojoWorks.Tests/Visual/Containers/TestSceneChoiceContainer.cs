@@ -123,7 +123,7 @@ namespace KanojoWorks.Tests.Visual.Containers
                 RelativeSizeAxes = Axes.X;
                 Anchor = Anchor.Centre;
                 Origin = Anchor.Centre;
-                BackgroundColour = Colour4.Brown;
+                BackgroundColour = Colour4.Crimson;
                 Action = () => Logger.Log($"Choice ${number} was selected");
             }
         }
