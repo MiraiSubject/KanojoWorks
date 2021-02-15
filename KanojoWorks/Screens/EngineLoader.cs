@@ -1,6 +1,5 @@
 
 
-using JetBrains.Annotations;
 using KanojoWorks.Graphics.UserInterface;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -14,11 +13,15 @@ namespace KanojoWorks.Screens
         private LoadingIndicator loadingIndicator;
         private KanojoWorksScreen loadableScreen;
         private ScheduledDelegate indicatorShow;
-        protected virtual KanojoWorksScreen CreateLoadableScreen() => new EngineDisclaimer();
+        private KanojoWorksScreen nextScreen;
+        protected virtual KanojoWorksScreen CreateLoadableScreen() => new EngineDisclaimer(nextScreen);
 
-        public EngineLoader()
+        public EngineLoader(KanojoWorksScreen next = null)
         {
             ValidForResume = false;
+
+            if (next != null)
+                nextScreen = next;
         }
 
         public override void OnEntering(IScreen last)

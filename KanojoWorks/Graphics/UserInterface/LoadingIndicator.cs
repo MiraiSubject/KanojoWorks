@@ -8,7 +8,7 @@ namespace KanojoWorks.Graphics.UserInterface
 {
     public class LoadingIndicator : VisibilityContainer
     {
-        public const float TRANSITION_DURATION = 1000;
+        public const float TRANSITION_DURATION = 500;
         private Sprite kanoSprite;
         private Sprite joSprite;
 
