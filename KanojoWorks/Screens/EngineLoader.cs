@@ -37,13 +37,21 @@ namespace KanojoWorks.Screens
                 AddInternal(loadingIndicator);
                 indicatorShow = Scheduler.AddDelayed(loadingIndicator.Show, 200);
             });
+            
+            // Artifical temporary delay to test out the loading screen. Will be removed once a proper test is created for this. 
+            Scheduler.AddDelayed(() => LoadComponentAsync(loadableScreen = CreateLoadableScreen()), 2000);
 
-            LoadComponentAsync(loadableScreen = CreateLoadableScreen());
             checkIfLoaded();
         }
 
         private void checkIfLoaded()
         {
+            if (loadableScreen == null)
+            {
+                Schedule(checkIfLoaded);
+                return;
+            }
+
             if (loadableScreen.LoadState != LoadState.Ready)
             {
                 Schedule(checkIfLoaded);
