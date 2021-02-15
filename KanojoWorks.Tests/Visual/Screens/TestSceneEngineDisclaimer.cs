@@ -7,10 +7,8 @@ namespace KanojoWorks.Tests.Visual.Screens
     public class TestSceneEngineDisclaimer : KanojoWorksTestScene
     {
         private ScreenStack screenStack;
-
         public TestSceneEngineDisclaimer()
         {
-            
             Child = screenStack = new ScreenStack()
             {
                 RelativeSizeAxes = Axes.Both,

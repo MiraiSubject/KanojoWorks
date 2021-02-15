@@ -71,6 +71,7 @@ namespace KanojoWorks.Graphics.Containers
                             Depth = float.MaxValue
                         });
 
+                        // TODO: Replace this so consumers can add their own background screen for their scaling containers.
                         backgroundStack.Push(new SimpleBackgroundScreen());
                     }
 

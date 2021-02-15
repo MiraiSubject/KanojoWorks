@@ -38,7 +38,6 @@ namespace KanojoWorks.Graphics.Containers
 
         private bool flowWrapping = true;
 
-
         /// <summary>
         /// Action that is invoked when <see cref="InputAction.Select"/> is triggered.
         /// </summary>

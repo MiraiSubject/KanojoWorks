@@ -12,7 +12,7 @@ namespace KanojoWorks.Input
         {
         }
 
-        public override IEnumerable<KeyBinding> DefaultKeyBindings => ControllerKeyBindings.Concat(KeyboardKeyBindings);
+        public override IEnumerable<IKeyBinding> DefaultKeyBindings => ControllerKeyBindings.Concat(KeyboardKeyBindings);
 
         public IEnumerable<KeyBinding> ControllerKeyBindings => new[]
         {
