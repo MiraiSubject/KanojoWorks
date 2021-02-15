@@ -58,8 +58,8 @@ namespace KanojoWorks
 
             currentDisplay = Host.Window.CurrentDisplayBindable;
 
-            var builtInResources = new NamespacedResourceStore<byte[]>(new DllResourceStore(typeof(KanojoWorksGameBase).Assembly), @"Resources");
-            Resources.AddStore(builtInResources);
+            var kwResources = new NamespacedResourceStore<byte[]>(new DllResourceStore(typeof(KanojoWorksGameBase).Assembly), @"Resources");
+            Resources.AddStore(kwResources);
 
             dependencies.CacheAs(this);
             Storage ??= Host.Storage;
@@ -71,14 +71,14 @@ namespace KanojoWorks
         // this should later become optional so users can choose between Maintain aspect ratio and no scaling at all.
         private void updateContainerSize()
         {
-            if (windowMode.Value == WindowMode.Windowed)
-            {
-                Schedule(() => nonScalingContent.ResizeTo(new Vector2(windowedResolution.Value.Width, windowedResolution.Value.Height)));
-                return;
-            }
+            // if (windowMode.Value == WindowMode.Windowed)
+            // {
+            //     Schedule(() => nonScalingContent.ResizeTo(new Vector2(windowedResolution.Value.Width, windowedResolution.Value.Height)));
+            //     return;
+            // }
 
             // Full screen or borderless apply the display's highest resolution. This is temporary for now to not fuck up resizing. 
-            Schedule(() => nonScalingContent.ResizeTo(new Vector2(currentDisplay.Value.Bounds.Width, currentDisplay.Value.Bounds.Height)));
+            // Schedule(() => nonScalingContent.ResizeTo(new Vector2(currentDisplay.Value.Bounds.Width, currentDisplay.Value.Bounds.Height)));
         }
     }
 }
