@@ -11,14 +11,15 @@ namespace KanojoWorks.Graphics.Containers
 {
     public class FixedResContainer : Container
     {
-        private Bindable<ScalingMode> scalingMode = new Bindable<ScalingMode>(ScalingMode.MaintainAspectRatio);
+        private Bindable<ScalingMode> scalingMode = new Bindable<ScalingMode>();
         private GameHost gameHost;
         private Size previousResolution;
 
         [BackgroundDependencyLoader]
-        private void load(GameHost host)
+        private void load(GameHost host, KanojoWorksConfigManager configManager)
         {
             gameHost = host;
+            scalingMode.BindTo(configManager.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode));
         }
 
         private void updateContainerSize()
