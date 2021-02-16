@@ -32,6 +32,36 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "Build (SampleNovel, Debug)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "-p:Configuration=Debug",
+                "-p:GenerateFullPaths=true",
+                "-m",
+                "-verbosity:m",
+                "SampleNovel.Desktop"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build (SampleNovel, Release)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "-p:Configuration=Release",
+                "-p:GenerateFullPaths=true",
+                "-m",
+                "-verbosity:m",
+                "SampleNovel.Desktop"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "Restore",
             "type": "shell",
             "command": "dotnet",

@@ -36,6 +36,40 @@
                 }
             },
             "console": "internalConsole"
-        }
+        },
+        {
+            "name": "SampleNovel (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "${workspaceRoot}/SampleNovel.Desktop/bin/Debug/net5.0/SampleNovel.Desktop.dll",
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build (SampleNovel, Debug)",
+            "linux": {
+                "env": {
+                    "LD_LIBRARY_PATH": "${workspaceRoot}/SampleNovel.Desktop/bin/Debug/net5.0:${env:LD_LIBRARY_PATH}"
+                }
+            },
+            "console": "internalConsole"
+        },
+        {
+            "name": "SampleNovel (Release)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "${workspaceRoot}/SampleNovel.Desktop/bin/Release/net5.0/SampleNovel.dll",
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build (SampleNovel, Release)",
+            "linux": {
+                "env": {
+                    "LD_LIBRARY_PATH": "${workspaceRoot}/SampleNovel.Desktop/bin/Release/net5.0:${env:LD_LIBRARY_PATH}"
+                }
+            },
+            "console": "internalConsole"
+        },
     ]
 }
