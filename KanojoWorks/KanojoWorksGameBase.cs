@@ -1,5 +1,6 @@
-
+using System;
 using System.Drawing;
+using KanojoWorks.Graphics.Containers;
 using KanojoWorks.Configuration;
 using osu.Framework;
 using osu.Framework.Allocation;
@@ -7,7 +8,6 @@ using osu.Framework.Bindables;
 using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Textures;
 using osu.Framework.IO.Stores;
 using osu.Framework.Platform;
 using osuTK;
@@ -16,9 +16,6 @@ namespace KanojoWorks
 {
     public class KanojoWorksGameBase : Game
     {
-        private Bindable<Size> windowedResolution;
-        private Bindable<WindowMode> windowMode;
-        private Bindable<Display> currentDisplay;
         private DependencyContainer dependencies;
         protected override Container<Drawable> Content { get; }
         protected Container<Drawable> nonScalingContent { get; private set; }
@@ -30,34 +27,16 @@ namespace KanojoWorks
 
         protected KanojoWorksGameBase()
         {
-            base.Content.AddRange(new Drawable[]
+            // Container for UI Screens like Menu's or background screens. 
+            base.Content.Add(Content = new DrawSizePreservingFillContainer
             {
-                // Non scaling content container for the visual novel in-game.
-                nonScalingContent = new Container
-                {
-                    Size = new Vector2(1280, 720),
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                },
-                // Scaling content container that preserves drawsize for things like Menus, Overlays etc.
-                Content = new DrawSizePreservingFillContainer
-                {
-                    TargetDrawSize = new Vector2(1280, 720)
-                }
+                TargetDrawSize = new Vector2(1280, 720)
             });
         }
 
         [BackgroundDependencyLoader]
         private void load(FrameworkConfigManager frameworkConfig)
         {
-            windowedResolution = frameworkConfig.GetBindable<Size>(FrameworkSetting.WindowedSize);
-            windowedResolution.ValueChanged += _ => updateContainerSize();
-
-            windowMode = frameworkConfig.GetBindable<WindowMode>(FrameworkSetting.WindowMode);
-            windowMode.ValueChanged += _ => updateContainerSize();
-
-            currentDisplay = Host.Window.CurrentDisplayBindable;
-
             var kwResources = new NamespacedResourceStore<byte[]>(new DllResourceStore(typeof(KanojoWorksGameBase).Assembly), @"Resources");
             Resources.AddStore(kwResources);
 
@@ -65,20 +44,17 @@ namespace KanojoWorks
             Storage ??= Host.Storage;
             dependencies.CacheAs(Storage);
             dependencies.CacheAs(ConfigManager = new KanojoWorksConfigManager(Storage));
-        }
 
-        // This currently resizes the nonscaling container regardless of aspect ratio,
-        // this should later become optional so users can choose between Maintain aspect ratio and no scaling at all.
-        private void updateContainerSize()
-        {
-            // if (windowMode.Value == WindowMode.Windowed)
-            // {
-            //     Schedule(() => nonScalingContent.ResizeTo(new Vector2(windowedResolution.Value.Width, windowedResolution.Value.Height)));
-            //     return;
-            // }
-
-            // Full screen or borderless apply the display's highest resolution. This is temporary for now to not fuck up resizing. 
-            // Schedule(() => nonScalingContent.ResizeTo(new Vector2(currentDisplay.Value.Bounds.Width, currentDisplay.Value.Bounds.Height)));
+            base.Content.AddRange(new Drawable[]
+            {
+                // Pixel based scaling container for the visual novel/other content in-game.
+                nonScalingContent = new FixedResContainer
+                {
+                    Size = new Vector2(1280, 720),
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                }
+            });
         }
     }
 }
