@@ -6,31 +6,35 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Platform;
 using KanojoWorks.Configuration;
+using osuTK;
 
 namespace KanojoWorks.Graphics.Containers
 {
     public class FixedResContainer : Container
     {
-        private Bindable<ScalingMode> scalingMode = new Bindable<ScalingMode>();
+        private Bindable<ScalingMode> scalingMode;
         private GameHost gameHost;
         private Size previousResolution;
         public readonly BindableBool CanDisplayBackgroundScreen = new BindableBool();
+        public Easing scaleEasing = Easing.OutQuart;
+        public double scaleDuration = 300;
 
         [BackgroundDependencyLoader]
         private void load(GameHost host, KanojoWorksConfigManager configManager)
         {
             gameHost = host;
-            scalingMode.BindTo(configManager.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode));
+            scalingMode = configManager.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode);
+            scalingMode.ValueChanged += _ => updateContainerSize(true);
         }
 
-        private void updateContainerSize()
+        private void updateContainerSize(bool scalingModeChanged = false)
         {
             int resolutionHeight = gameHost.Window.ClientSize.Height;
             int resolutionWidth = gameHost.Window.ClientSize.Width;
 
-            if (resolutionWidth == previousResolution.Width
-                && resolutionHeight == previousResolution.Height)
-                return;
+            if ((resolutionWidth == previousResolution.Width && resolutionHeight == previousResolution.Height))
+                if (!scalingModeChanged)
+                    return;
 
             var xRatio = resolutionWidth / Size.X;
             var yRatio = resolutionHeight / Size.Y;
@@ -47,15 +51,30 @@ namespace KanojoWorks.Graphics.Containers
                         CanDisplayBackgroundScreen.Value = false;
 
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
-                    Schedule(() => this.ScaleTo(ratio));
+
+                    if (scalingModeChanged)
+                        Schedule(() => this.ScaleTo(ratio, scaleDuration, scaleEasing));
+                    else
+                        Schedule(() => this.ScaleTo(ratio));
                     break;
 
                 case ScalingMode.Stretch:
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
-                    Schedule(() => this.ScaleTo(new osuTK.Vector2(xRatio, yRatio)));
+
+                    if (scalingModeChanged)
+                        Schedule(() => this.ScaleTo(new Vector2(xRatio, yRatio), scaleDuration, scaleEasing));
+                    else
+                        Schedule(() => this.ScaleTo(new Vector2(xRatio, yRatio)));
                     break;
 
                 case ScalingMode.NoScaling:
+                    previousResolution = new Size(resolutionWidth, resolutionHeight);
+
+                    if (scalingModeChanged)
+                        Schedule(() => this.ScaleTo(1, scaleDuration, scaleEasing));
+                    else
+                        Schedule(() => this.ScaleTo(1));
+
                     if (resolutionWidth != Size.X || resolutionHeight != Size.Y)
                         CanDisplayBackgroundScreen.Value = true;
                     else
