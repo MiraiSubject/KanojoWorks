@@ -18,9 +18,14 @@ namespace KanojoWorks
     {
         private DependencyContainer dependencies;
         protected override Container<Drawable> Content { get; }
-        protected Container<Drawable> nonScalingContent { get; private set; }
+        protected Container<Drawable> NovelContent { get; private set; }
         protected Storage Storage { get; set; }
         protected KanojoWorksConfigManager ConfigManager;
+
+        /// <summary>
+        /// The desired target resolution for the visual novel.
+        /// </summary>
+        protected virtual Vector2 TargetResolution => new Vector2(1280, 720);
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
             dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
@@ -30,7 +35,7 @@ namespace KanojoWorks
             // Container for UI Screens like Menu's or background screens. 
             base.Content.Add(Content = new DrawSizePreservingFillContainer
             {
-                TargetDrawSize = new Vector2(1280, 720)
+                TargetDrawSize = TargetResolution
             });
         }
 
@@ -48,9 +53,9 @@ namespace KanojoWorks
             base.Content.AddRange(new Drawable[]
             {
                 // Pixel based scaling container for the visual novel/other content in-game.
-                nonScalingContent = new FixedResContainer
+                NovelContent = new FixedResContainer
                 {
-                    Size = new Vector2(1280, 720),
+                    Size = TargetResolution,
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                 }

@@ -3,6 +3,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Screens;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Shapes;
+using osuTK;
 using KanojoWorks.Screens;
 using KanojoWorks.Themes.Basic;
 
@@ -11,12 +12,13 @@ namespace SampleNovel
     public class SampleNovelGame : SampleNovelGameBase
     {
         private ScreenStack screenStack;
+        protected override Vector2 TargetResolution => new osuTK.Vector2(1280, 720);
 
         [BackgroundDependencyLoader]
         private void load()
         {
             //Child = screenStack = new ScreenStack { RelativeSizeAxes = Axes.Both };
-            nonScalingContent.AddRange(new Drawable[]
+            NovelContent.AddRange(new Drawable[]
             {
                 new SpriteText
                 {
