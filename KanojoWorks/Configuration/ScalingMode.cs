@@ -4,11 +4,13 @@ namespace KanojoWorks.Configuration
 {
     public enum ScalingMode
     {
-        [Description("Scale proportionally")]
+        [Description("Scale content proportionally")]
         MaintainAspectRatio,
-        [Description("Stretch to the monitor's aspect ratio")]
+        [Description("Custom scaling")]
+        Custom,
+        [Description("Stretch to the window's aspect ratio")]
         Stretch,
-        [Description("No scaling")]
+        [Description("No scaling, if the resolution is lower will scale proportionally")]
         NoScaling
     }
 }

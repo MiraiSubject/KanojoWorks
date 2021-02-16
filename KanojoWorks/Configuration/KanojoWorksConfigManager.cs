@@ -38,7 +38,7 @@ namespace KanojoWorks.Configuration
             Set(KanojoWorksSetting.NovelSFXVolume, 0.95, 0, 1, 0.01);
 
             // Scaling defaults
-            Set(KanojoWorksSetting.ScalingMode, ScalingMode.MaintainAspectRatio);
+            Set(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling);
             Set(KanojoWorksSetting.Scale, 0.8f, 0.2f, 1f);
         }
     }
