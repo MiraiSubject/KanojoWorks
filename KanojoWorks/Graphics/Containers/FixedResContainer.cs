@@ -14,6 +14,7 @@ namespace KanojoWorks.Graphics.Containers
         private Bindable<ScalingMode> scalingMode = new Bindable<ScalingMode>();
         private GameHost gameHost;
         private Size previousResolution;
+        public readonly BindableBool CanDisplayBackgroundScreen = new BindableBool();
 
         [BackgroundDependencyLoader]
         private void load(GameHost host, KanojoWorksConfigManager configManager)
@@ -38,6 +39,13 @@ namespace KanojoWorks.Graphics.Containers
             {
                 case ScalingMode.MaintainAspectRatio:
                     var ratio = Math.Min(xRatio, yRatio);
+
+                    // Can display the background container if there's pillar/letterboxing
+                    if (xRatio != yRatio)
+                        CanDisplayBackgroundScreen.Value = true;
+                    else
+                        CanDisplayBackgroundScreen.Value = false;
+
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
                     Schedule(() => this.ScaleTo(ratio));
                     break;
@@ -48,7 +56,10 @@ namespace KanojoWorks.Graphics.Containers
                     break;
 
                 case ScalingMode.NoScaling:
-                default:
+                    if (resolutionWidth != Size.X || resolutionHeight != Size.Y)
+                        CanDisplayBackgroundScreen.Value = true;
+                    else
+                        CanDisplayBackgroundScreen.Value = false;
                     break;
             }
         }
