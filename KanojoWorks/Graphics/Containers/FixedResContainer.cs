@@ -42,20 +42,8 @@ namespace KanojoWorks.Graphics.Containers
             switch (scalingMode.Value)
             {
                 case ScalingMode.MaintainAspectRatio:
-                    var ratio = Math.Min(xRatio, yRatio);
-
-                    // Can display the background container if there's pillar/letterboxing
-                    if (xRatio != yRatio)
-                        CanDisplayBackgroundScreen.Value = true;
-                    else
-                        CanDisplayBackgroundScreen.Value = false;
-
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
-
-                    if (scalingModeChanged)
-                        Schedule(() => this.ScaleTo(ratio, scaleDuration, scaleEasing));
-                    else
-                        Schedule(() => this.ScaleTo(ratio));
+                    rescaleMaintain(xRatio, yRatio, scalingModeChanged);
                     break;
 
                 case ScalingMode.Stretch:
@@ -70,17 +58,39 @@ namespace KanojoWorks.Graphics.Containers
                 case ScalingMode.NoScaling:
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
 
-                    if (scalingModeChanged)
-                        Schedule(() => this.ScaleTo(1, scaleDuration, scaleEasing));
-                    else
-                        Schedule(() => this.ScaleTo(1));
-
+                    if (resolutionWidth < Size.X || resolutionHeight < Size.Y)
+                    {
+                        rescaleMaintain(xRatio, yRatio, scalingModeChanged);
+                        return;
+                    }
+                        
                     if (resolutionWidth != Size.X || resolutionHeight != Size.Y)
                         CanDisplayBackgroundScreen.Value = true;
                     else
                         CanDisplayBackgroundScreen.Value = false;
+
+                    if (scalingModeChanged)
+                        Schedule(() => this.ScaleTo(1, scaleDuration, scaleEasing));
+                    else
+                        Schedule(() => this.ScaleTo(1));
                     break;
             }
+        }
+
+        private void rescaleMaintain(float xRatio, float yRatio, bool scalingModeChanged)
+        {
+            var ratio = Math.Min(xRatio, yRatio);
+
+            // Can display the background container if there's pillar/letterboxing
+            if (xRatio != yRatio)
+                CanDisplayBackgroundScreen.Value = true;
+            else
+                CanDisplayBackgroundScreen.Value = false;
+
+            if (scalingModeChanged)
+                Schedule(() => this.ScaleTo(ratio, scaleDuration, scaleEasing));
+            else
+                Schedule(() => this.ScaleTo(ratio));
         }
 
         // Ensure Container size is updated every frame for smooth resizing. 
