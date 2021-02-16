@@ -31,17 +31,18 @@ namespace KanojoWorks.Graphics.Containers
                 && resolutionHeight == previousResolution.Height)
                 return;
 
+            var xRatio = resolutionWidth / Size.X;
+            var yRatio = resolutionHeight / Size.Y;
+
             switch (scalingMode.Value)
             {
                 case ScalingMode.MaintainAspectRatio:
-                    var ratio = Math.Min((float)resolutionWidth / Size.X, (float)resolutionHeight / Size.Y);
+                    var ratio = Math.Min(xRatio, yRatio);
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
                     Schedule(() => this.ScaleTo(ratio));
                     break;
 
                 case ScalingMode.Stretch:
-                    var xRatio = resolutionWidth / Size.X;
-                    var yRatio = resolutionHeight / Size.Y;
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
                     Schedule(() => this.ScaleTo(new osuTK.Vector2(xRatio, yRatio)));
                     break;
