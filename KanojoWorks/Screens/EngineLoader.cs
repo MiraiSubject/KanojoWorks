@@ -1,8 +1,11 @@
 
-
+using System.Collections.Generic;
+using System.Linq;
 using KanojoWorks.Graphics.UserInterface;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shaders;
 using osu.Framework.Screens;
 using osu.Framework.Threading;
 
@@ -14,7 +17,10 @@ namespace KanojoWorks.Screens
         private KanojoWorksScreen loadableScreen;
         private ScheduledDelegate indicatorShow;
         private KanojoWorksScreen nextScreen;
+        private ShaderPrecompiler precompiler;
         protected virtual KanojoWorksScreen CreateLoadableScreen() => new EngineDisclaimer(nextScreen);
+
+        protected virtual ShaderPrecompiler CreateShaderPrecompiler() => new ShaderPrecompiler();
 
         public EngineLoader(KanojoWorksScreen next = null)
         {
@@ -37,22 +43,16 @@ namespace KanojoWorks.Screens
                 AddInternal(loadingIndicator);
                 indicatorShow = Scheduler.AddDelayed(loadingIndicator.Show, 200);
             });
-            
-            // Artifical temporary delay to test out the loading screen. Will be removed once a proper test is created for this. 
-            Scheduler.AddDelayed(() => LoadComponentAsync(loadableScreen = CreateLoadableScreen()), 2000);
+
+            LoadComponentAsync(precompiler = CreateShaderPrecompiler(), AddInternal);
+            LoadComponentAsync(loadableScreen = CreateLoadableScreen());
 
             checkIfLoaded();
         }
 
         private void checkIfLoaded()
         {
-            if (loadableScreen == null)
-            {
-                Schedule(checkIfLoaded);
-                return;
-            }
-
-            if (loadableScreen.LoadState != LoadState.Ready)
+            if (loadableScreen == null || !precompiler.FinishedCompiling)
             {
                 Schedule(checkIfLoaded);
                 return;
@@ -67,6 +67,34 @@ namespace KanojoWorks.Screens
             }
             else
                 this.Push(loadableScreen);
+        }
+
+        public class ShaderPrecompiler : Drawable
+        {
+            private readonly List<IShader> loadTargets = new List<IShader>();
+
+            public bool FinishedCompiling { get; private set; }
+
+            [BackgroundDependencyLoader]
+            private void load(ShaderManager manager)
+            {
+                loadTargets.Add(manager.Load(VertexShaderDescriptor.TEXTURE_2, FragmentShaderDescriptor.BLUR));
+                loadTargets.Add(manager.Load(VertexShaderDescriptor.TEXTURE_2, FragmentShaderDescriptor.TEXTURE));
+            }
+
+            protected virtual bool AllLoaded => loadTargets.All(s => s.IsLoaded);
+
+            protected override void Update()
+            {
+                base.Update();
+
+                // if our target is null we are done.
+                if (AllLoaded)
+                {
+                    FinishedCompiling = true;
+                    Expire();
+                }
+            }
         }
     }
 }
