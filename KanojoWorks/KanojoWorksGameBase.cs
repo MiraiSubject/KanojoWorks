@@ -18,7 +18,7 @@ namespace KanojoWorks
     {
         private DependencyContainer dependencies;
         protected override Container<Drawable> Content { get; }
-        protected Container<Drawable> NovelContent { get; private set; }
+        public FixedResContainer NovelContent { get; private set; }
         protected Storage Storage { get; set; }
         protected KanojoWorksConfigManager ConfigManager;
 
@@ -26,6 +26,11 @@ namespace KanojoWorks
         /// The desired target resolution for the visual novel.
         /// </summary>
         protected virtual Vector2 TargetResolution => new Vector2(1280, 720);
+
+        /// <summary>
+        /// Whether a drawable can be displayed behind the Novel Content Container.
+        /// </summary>
+        public readonly BindableBool CanDisplayBackgroundDrawable = new BindableBool();
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
             dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
@@ -60,6 +65,8 @@ namespace KanojoWorks
                     Origin = Anchor.Centre,
                 }
             });
+
+            CanDisplayBackgroundDrawable.BindTo(NovelContent.CanDisplayBackgroundDrawable);
         }
     }
 }

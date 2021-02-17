@@ -15,7 +15,7 @@ namespace KanojoWorks.Graphics.Containers
         private Bindable<ScalingMode> scalingMode;
         private GameHost gameHost;
         private Size previousResolution;
-        public readonly BindableBool CanDisplayBackgroundScreen = new BindableBool();
+        public readonly BindableBool CanDisplayBackgroundDrawable = new BindableBool();
         public Easing scaleEasing = Easing.OutQuart;
         public double scaleDuration = 300;
 
@@ -65,9 +65,9 @@ namespace KanojoWorks.Graphics.Containers
                     }
                         
                     if (resolutionWidth != Size.X || resolutionHeight != Size.Y)
-                        CanDisplayBackgroundScreen.Value = true;
+                        CanDisplayBackgroundDrawable.Value = true;
                     else
-                        CanDisplayBackgroundScreen.Value = false;
+                        CanDisplayBackgroundDrawable.Value = false;
 
                     if (scalingModeChanged)
                         Schedule(() => this.ScaleTo(1, scaleDuration, scaleEasing));
@@ -83,9 +83,9 @@ namespace KanojoWorks.Graphics.Containers
 
             // Can display the background container if there's pillar/letterboxing
             if (xRatio != yRatio)
-                CanDisplayBackgroundScreen.Value = true;
+                CanDisplayBackgroundDrawable.Value = true;
             else
-                CanDisplayBackgroundScreen.Value = false;
+                CanDisplayBackgroundDrawable.Value = false;
 
             if (scalingModeChanged)
                 Schedule(() => this.ScaleTo(ratio, scaleDuration, scaleEasing));

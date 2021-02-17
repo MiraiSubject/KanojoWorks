@@ -58,7 +58,7 @@ namespace KanojoWorks.Tests.Visual.Containers
                 }
             });
 
-            canDisplayBackground.BindTo(fixedResContainer.CanDisplayBackgroundScreen);
+            canDisplayBackground.BindTo(fixedResContainer.CanDisplayBackgroundDrawable);
 
             canDisplayBackground.BindValueChanged((t) =>
             {
