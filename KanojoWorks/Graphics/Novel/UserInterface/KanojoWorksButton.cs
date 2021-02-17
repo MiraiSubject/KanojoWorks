@@ -4,6 +4,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Events;
+using KanojoWorks.Graphics;
 using KanojoWorks.Graphics.UserInterface;
 
 namespace KanojoWorks.Novel.UserInterface
@@ -64,7 +65,8 @@ namespace KanojoWorks.Novel.UserInterface
                     {
                         Depth = -1,
                         Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre
+                        Origin = Anchor.Centre,
+                        Font = KanojoWorksFont.GetFont()
                     }
                 }
             });

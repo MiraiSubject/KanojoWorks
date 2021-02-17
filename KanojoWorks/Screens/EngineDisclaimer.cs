@@ -1,6 +1,7 @@
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 using osu.Framework.Graphics.Containers;
+using KanojoWorks.Graphics;
 using osuTK;
 
 namespace KanojoWorks.Screens
@@ -29,9 +30,9 @@ namespace KanojoWorks.Screens
                 }
             };
 
-            textFlow.AddText("This game runs on the KanojoWorks engine built on osu!framework.");
+            textFlow.AddText("This game runs on the KanojoWorks engine built on osu!framework.", t => t.Font = KanojoWorksFont.GetFont(size: 30));
             textFlow.NewParagraph();
-            textFlow.AddText("KanojoWorks is still a work in progress, so weirdness and bugs may occur.");
+            textFlow.AddText("KanojoWorks is still a work in progress, so weirdness and bugs may occur.", t => t.Font = KanojoWorksFont.GetFont(size: 30));
         }
 
         protected override void LoadComplete()
