@@ -29,6 +29,9 @@ namespace KanojoWorks.Graphics.Containers
 
         private void updateContainerSize(bool scalingModeChanged = false)
         {
+            if (gameHost.Window == null)
+                return;
+
             int resolutionHeight = gameHost.Window.ClientSize.Height;
             int resolutionWidth = gameHost.Window.ClientSize.Width;
 

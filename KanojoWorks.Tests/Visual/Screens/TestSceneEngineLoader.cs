@@ -28,18 +28,33 @@ namespace KanojoWorks.Tests.Visual.Screens
         public void TestDelayedLoad()
         {
             AddStep("begin loading", () => screenStack.Push(loader = new TestEngineLoader()));
-            AddUntilStep("wait for spinner visible", () => loader.indicator?.Alpha > 0);
-            AddUntilStep("spinner gone", () => loader.indicator?.Alpha == 0);
+            AddUntilStep("wait for indicator visible", () => loader.indicator?.Alpha > 0);
+            AddStep("finish loading", () => loader.AllowLoad.Set());
+            AddUntilStep("indicator gone", () => loader.indicator?.Alpha == 0);
             AddUntilStep("loaded", () => loader.ScreenLoaded);
+            AddUntilStep("not current", () => !loader.IsCurrentScreen());
         }
 
 
         private class TestEngineLoader : EngineLoader
         {
-            private TestScreen screen;
+            public readonly ManualResetEventSlim AllowLoad = new ManualResetEventSlim();
+            private KanojoWorksScreen screen;
             public LoadingIndicator indicator => this.ChildrenOfType<LoadingIndicator>().FirstOrDefault();
             public bool ScreenLoaded => screen.IsCurrentScreen();
-            protected override KanojoWorksScreen CreateLoadableScreen() => new EngineDisclaimer(new TestScreen());
+            protected override KanojoWorksScreen CreateLoadableScreen() => screen = new EngineDisclaimer(new TestScreen());
+            protected override ShaderPrecompiler CreateShaderPrecompiler() => new TestShaderPrecompiler(AllowLoad);
+
+            private class TestShaderPrecompiler : ShaderPrecompiler
+            {
+                private readonly ManualResetEventSlim allowLoad;
+                public TestShaderPrecompiler(ManualResetEventSlim allowLoad)
+                {
+                    this.allowLoad = allowLoad;
+                }
+
+                protected override bool AllLoaded => allowLoad.IsSet;
+            }
 
             private class TestScreen : KanojoWorksScreen
             {
