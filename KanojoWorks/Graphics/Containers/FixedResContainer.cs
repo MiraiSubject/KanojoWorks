@@ -15,9 +15,25 @@ namespace KanojoWorks.Graphics.Containers
         private Bindable<ScalingMode> scalingMode;
         private GameHost gameHost;
         private Size previousResolution;
+
+        /// <summary>
+        /// Whether a drawable can be displayed behind the Novel Content Container.
+        /// This would be used in scenario's where there is a <see cref="osu.Framework.Graphics.Containers.DrawSizePreservingFillContainer"/>
+        /// in the background to fill the blank space.
+        /// </summary>
         public readonly BindableBool CanDisplayBackgroundDrawable = new BindableBool();
-        public Easing scaleEasing = Easing.OutQuart;
-        public double scaleDuration = 300;
+
+        /// <summary>
+        /// Type of <see cref="osu.Framework.Graphics.Easing"/> to be applied on rescaling when
+        /// <see cref="KanojoWorks.Configuration.ScalingMode"/> gets changed.
+        /// </summary>
+        public Easing RescaleEasing = Easing.OutQuart;
+
+        /// <summary>
+        /// The duration of the rescale animation when
+        /// <see cref="KanojoWorks.Configuration.ScalingMode"/> gets changed.
+        /// </summary>
+        public double RescaleTransformDuration = 300;
 
         [BackgroundDependencyLoader]
         private void load(GameHost host, KanojoWorksConfigManager configManager)
@@ -53,7 +69,7 @@ namespace KanojoWorks.Graphics.Containers
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
 
                     if (scalingModeChanged)
-                        Schedule(() => this.ScaleTo(new Vector2(xRatio, yRatio), scaleDuration, scaleEasing));
+                        Schedule(() => this.ScaleTo(new Vector2(xRatio, yRatio), RescaleTransformDuration, RescaleEasing));
                     else
                         Schedule(() => this.ScaleTo(new Vector2(xRatio, yRatio)));
                     break;
@@ -66,14 +82,14 @@ namespace KanojoWorks.Graphics.Containers
                         rescaleMaintain(xRatio, yRatio, scalingModeChanged);
                         return;
                     }
-                        
+
                     if (resolutionWidth != Size.X || resolutionHeight != Size.Y)
                         CanDisplayBackgroundDrawable.Value = true;
                     else
                         CanDisplayBackgroundDrawable.Value = false;
 
                     if (scalingModeChanged)
-                        Schedule(() => this.ScaleTo(1, scaleDuration, scaleEasing));
+                        Schedule(() => this.ScaleTo(1, RescaleTransformDuration, RescaleEasing));
                     else
                         Schedule(() => this.ScaleTo(1));
                     break;
@@ -91,7 +107,7 @@ namespace KanojoWorks.Graphics.Containers
                 CanDisplayBackgroundDrawable.Value = false;
 
             if (scalingModeChanged)
-                Schedule(() => this.ScaleTo(ratio, scaleDuration, scaleEasing));
+                Schedule(() => this.ScaleTo(ratio, RescaleTransformDuration, RescaleEasing));
             else
                 Schedule(() => this.ScaleTo(ratio));
         }
