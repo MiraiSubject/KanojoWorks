@@ -16,6 +16,7 @@ namespace KanojoWorks.Overlays.Settings
     {
         private Bindable<ScalingMode> scalingMode;
         private Bindable<Size> sizeFullscreen;
+        private Bindable<WindowMode> currentwindowMode = new Bindable<WindowMode>();
         private readonly IBindable<Display> currentDisplay = new Bindable<Display>();
         private readonly IBindableList<WindowMode> windowModes = new BindableList<WindowMode>();
         private readonly BindableList<Size> resolutions = new BindableList<Size>(new[] { new Size(9999, 9999) });
@@ -24,6 +25,7 @@ namespace KanojoWorks.Overlays.Settings
         private void load(FrameworkConfigManager config, KanojoWorksConfigManager kwConfig, GameHost host)
         {
             scalingMode = kwConfig.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode);
+            currentwindowMode = config.GetBindable<WindowMode>(FrameworkSetting.WindowMode);
             sizeFullscreen = config.GetBindable<Size>(FrameworkSetting.SizeFullscreen);
 
             if (host.Window != null)
@@ -55,10 +57,25 @@ namespace KanojoWorks.Overlays.Settings
                         },
                     }
                 },
-                new SpriteText
+                new FillFlowContainer
                 {
-                    Text = "Window Mode",
-                    Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                    AutoSizeAxes = Axes.Both,
+                    Direction = FillDirection.Horizontal,
+                    Spacing = new osuTK.Vector2(5),
+                    Children = new Drawable[]
+                    {
+                        new SpriteText
+                        {
+                            Text = "Window Mode",
+                            Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                        },
+                        new BasicDropdown<WindowMode>
+                        {
+                            Width = 200,
+                            ItemSource = windowModes,
+                            Current = currentwindowMode
+                        },
+                    }
                 },
                 new SpriteText
                 {
