@@ -1,19 +1,19 @@
+using KanojoWorks.Screens;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
-using KanojoWorks.Screens;
 
-namespace KanojoWorks.Tests.Visual.Screens
+namespace KanojoWorks.Tests.Visual.Themes.Screens
 {
     public class TestSceneEngineDisclaimer : KanojoWorksTestScene
     {
-        private ScreenStack screenStack;
         public TestSceneEngineDisclaimer()
         {
-            Child = screenStack = new ScreenStack()
+            ScreenStack screenStack;
+            Child = screenStack = new ScreenStack
             {
                 RelativeSizeAxes = Axes.Both,
                 Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
+                Origin = Anchor.Centre
             };
 
             screenStack.Push(new EngineLoader());

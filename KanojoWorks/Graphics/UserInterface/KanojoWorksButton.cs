@@ -1,11 +1,11 @@
+using KanojoWorks.Graphics;
+using KanojoWorks.Graphics.UserInterface;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Events;
-using KanojoWorks.Graphics;
-using KanojoWorks.Graphics.UserInterface;
 
 namespace KanojoWorks.Novel.UserInterface
 {
@@ -15,6 +15,7 @@ namespace KanojoWorks.Novel.UserInterface
         protected Box HoverArea;
         protected Box Background;
         private SpriteText spriteText;
+
         public string Text
         {
             get => spriteText?.Text;
@@ -26,6 +27,7 @@ namespace KanojoWorks.Novel.UserInterface
         }
 
         private Colour4? backgroundColour;
+
         public Colour4 BackgroundColour
         {
             set
@@ -89,7 +91,6 @@ namespace KanojoWorks.Novel.UserInterface
                 HoverArea.FadeOut(200, Easing.Out);
                 //Content.TweenEdgeEffectTo(unSelectedTileEffect, 100, Easing.Out);
             }
-
         }
 
         protected override bool OnClick(ClickEvent e)
@@ -116,6 +117,5 @@ namespace KanojoWorks.Novel.UserInterface
         {
             this.FadeColour(e.NewValue ? Colour4.White : Colour4.Gray, 200, Easing.OutQuint);
         }
-
     }
 }

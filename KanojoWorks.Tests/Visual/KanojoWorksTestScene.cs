@@ -1,28 +1,29 @@
 using System;
 using System.IO;
+using KanojoWorks.Configuration;
 using osu.Framework;
 using osu.Framework.Allocation;
-using osu.Framework.Testing;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Platform;
-using KanojoWorks.Configuration;
+using osu.Framework.Testing;
 
 namespace KanojoWorks.Tests.Visual
 {
     public abstract class KanojoWorksTestScene : TestScene
     {
         protected override Container<Drawable> Content => content ?? base.Content;
-        private Container content;
+        private readonly Container content;
         private Lazy<Storage> localStorage;
         protected Storage LocalStorage => localStorage.Value;
-        protected KanojoWorksConfigManager configManager;
+        protected KanojoWorksConfigManager ConfigManager;
         private DependencyContainer dependencies;
+
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
         {
             RecycleLocalStorage();
             dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
-            dependencies.CacheAs<KanojoWorksConfigManager>(configManager = new KanojoWorksConfigManager(LocalStorage));
+            dependencies.CacheAs(ConfigManager = new KanojoWorksConfigManager(LocalStorage));
             return dependencies;
         }
 
@@ -31,12 +32,7 @@ namespace KanojoWorks.Tests.Visual
             base.Content.Add(content = new DrawSizePreservingFillContainer());
         }
 
-        [BackgroundDependencyLoader]
-        private void load()
-        {
-        }
-
-        public virtual void RecycleLocalStorage()
+        public void RecycleLocalStorage()
         {
             if (localStorage?.IsValueCreated == true)
             {

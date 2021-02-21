@@ -1,7 +1,5 @@
-using System;
-using System.Drawing;
-using KanojoWorks.Graphics.Containers;
 using KanojoWorks.Configuration;
+using KanojoWorks.Graphics.Containers;
 using osu.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
@@ -37,7 +35,7 @@ namespace KanojoWorks
 
         protected KanojoWorksGameBase()
         {
-            // Container for UI Screens like Menu's or background screens. 
+            // Container for UI Screens like Menu's or background screens.
             base.Content.Add(Content = new DrawSizePreservingFillContainer
             {
                 TargetDrawSize = TargetResolution

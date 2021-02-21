@@ -1,11 +1,11 @@
 using System;
 using System.Drawing;
+using KanojoWorks.Configuration;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Platform;
-using KanojoWorks.Configuration;
 using osuTK;
 
 namespace KanojoWorks.Graphics.Containers
@@ -52,8 +52,10 @@ namespace KanojoWorks.Graphics.Containers
             int resolutionWidth = gameHost.Window.ClientSize.Width;
 
             if ((resolutionWidth == previousResolution.Width && resolutionHeight == previousResolution.Height))
+            {
                 if (!scalingModeChanged)
                     return;
+            }
 
             var xRatio = resolutionWidth / Size.X;
             var yRatio = resolutionHeight / Size.Y;
@@ -101,10 +103,7 @@ namespace KanojoWorks.Graphics.Containers
             var ratio = Math.Min(xRatio, yRatio);
 
             // Can display the background container if there's pillar/letterboxing
-            if (xRatio != yRatio)
-                CanDisplayBackgroundDrawable.Value = true;
-            else
-                CanDisplayBackgroundDrawable.Value = false;
+            CanDisplayBackgroundDrawable.Value = xRatio != yRatio;
 
             if (scalingModeChanged)
                 Schedule(() => this.ScaleTo(ratio, RescaleTransformDuration, RescaleEasing));
@@ -112,7 +111,7 @@ namespace KanojoWorks.Graphics.Containers
                 Schedule(() => this.ScaleTo(ratio));
         }
 
-        // Ensure Container size is updated every frame for smooth resizing. 
+        // Ensure Container size is updated every frame for smooth resizing.
         protected override void Update()
         {
             base.Update();

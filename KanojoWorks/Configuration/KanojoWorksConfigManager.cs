@@ -8,7 +8,7 @@ namespace KanojoWorks.Configuration
     public class KanojoWorksConfigManager : IniConfigManager<KanojoWorksSetting>
     {
         public KanojoWorksConfigManager(Storage storage)
-         : base(storage)
+            : base(storage)
         {
         }
 
@@ -20,12 +20,12 @@ namespace KanojoWorks.Configuration
             Set(KanojoWorksSetting.TextDisplaySpeed, 0.8, 0, 1, 0.01);
             Set(KanojoWorksSetting.AutoPlaySpeed, 0.8, 0, 1, 0.01);
 
-            Set(KanojoWorksSetting.SkipUnreadText, false).BindValueChanged((v) =>
+            Set(KanojoWorksSetting.SkipUnreadText, false).BindValueChanged(v =>
             {
                 if (v.NewValue) Set(KanojoWorksSetting.SkipUnreadText, true);
             });
 
-            Set(KanojoWorksSetting.MarkReadText, true).BindValueChanged((v) =>
+            Set(KanojoWorksSetting.MarkReadText, true).BindValueChanged(v =>
             {
                 if (!v.NewValue) Set(KanojoWorksSetting.MarkReadText, false);
             });

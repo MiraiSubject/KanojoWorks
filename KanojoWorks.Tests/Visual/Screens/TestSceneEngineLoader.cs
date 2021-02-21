@@ -1,19 +1,20 @@
 using System.Linq;
 using System.Threading;
+using KanojoWorks.Graphics.UserInterface;
+using KanojoWorks.Screens;
 using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Screens;
 using osu.Framework.Testing;
-using KanojoWorks.Graphics.UserInterface;
-using KanojoWorks.Screens;
 
-namespace KanojoWorks.Tests.Visual.Screens
+namespace KanojoWorks.Tests.Visual.Themes.Screens
 {
     public class TestSceneEngineLoader : KanojoWorksTestScene
     {
         private TestEngineLoader loader;
-        private ScreenStack screenStack;
+        private readonly ScreenStack screenStack;
+
         public TestSceneEngineLoader()
         {
             Child = screenStack = new ScreenStack
@@ -28,19 +29,18 @@ namespace KanojoWorks.Tests.Visual.Screens
         public void TestDelayedLoad()
         {
             AddStep("begin loading", () => screenStack.Push(loader = new TestEngineLoader()));
-            AddUntilStep("wait for indicator visible", () => loader.indicator?.Alpha > 0);
+            AddUntilStep("wait for indicator visible", () => loader.Indicator?.Alpha > 0);
             AddStep("finish loading", () => loader.AllowLoad.Set());
-            AddUntilStep("indicator gone", () => loader.indicator?.Alpha == 0);
+            AddUntilStep("indicator gone", () => loader.Indicator?.Alpha == 0);
             AddUntilStep("loaded", () => loader.ScreenLoaded);
             AddUntilStep("not current", () => !loader.IsCurrentScreen());
         }
-
 
         private class TestEngineLoader : EngineLoader
         {
             public readonly ManualResetEventSlim AllowLoad = new ManualResetEventSlim();
             private KanojoWorksScreen screen;
-            public LoadingIndicator indicator => this.ChildrenOfType<LoadingIndicator>().FirstOrDefault();
+            public LoadingIndicator Indicator => this.ChildrenOfType<LoadingIndicator>().FirstOrDefault();
             public bool ScreenLoaded => screen.IsCurrentScreen();
             protected override KanojoWorksScreen CreateLoadableScreen() => screen = new EngineDisclaimer(new TestScreen());
             protected override ShaderPrecompiler CreateShaderPrecompiler() => new TestShaderPrecompiler(AllowLoad);
@@ -48,6 +48,7 @@ namespace KanojoWorks.Tests.Visual.Screens
             private class TestShaderPrecompiler : ShaderPrecompiler
             {
                 private readonly ManualResetEventSlim allowLoad;
+
                 public TestShaderPrecompiler(ManualResetEventSlim allowLoad)
                 {
                     this.allowLoad = allowLoad;

@@ -55,7 +55,7 @@ namespace KanojoWorks.Input
 
         public IEnumerable<KeyBinding> KeyboardKeyBindings => new[]
         {
-            new KeyBinding(InputKey.Enter , InputAction.Select),
+            new KeyBinding(InputKey.Enter, InputAction.Select),
             new KeyBinding(InputKey.Space, InputAction.Select),
             new KeyBinding(InputKey.BackSpace, InputAction.HideDialoguePanel),
             new KeyBinding(InputKey.Control, InputAction.HoldSkip),

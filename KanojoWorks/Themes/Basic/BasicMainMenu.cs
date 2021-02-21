@@ -1,15 +1,16 @@
 using System;
+using KanojoWorks.Graphics.UserInterface;
+using KanojoWorks.Screens;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Screens;
-using KanojoWorks.Novel.UserInterface;
 using osuTK;
 
 namespace KanojoWorks.Themes.Basic
 {
-    public class BasicMainMenu : KanojoWorks.Screens.MainMenu
+    public class BasicMainMenu : MainMenu
     {
         private FillFlowContainer<MenuButton> buttonsContainer;
 
@@ -91,10 +92,10 @@ namespace KanojoWorks.Themes.Basic
 
         protected void AddButton(string name, Action action) =>
             buttonsContainer.Add(new MenuButton
-                {
-                    Text = name,
-                    Action = action
-                });
+            {
+                Text = name,
+                Action = action
+            });
 
         private class MenuButton : KanojoWorksButton
         {

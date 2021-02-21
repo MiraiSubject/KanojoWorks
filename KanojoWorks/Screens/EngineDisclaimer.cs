@@ -1,7 +1,7 @@
-using osu.Framework.Graphics;
-using osu.Framework.Screens;
-using osu.Framework.Graphics.Containers;
 using KanojoWorks.Graphics;
+using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Screens;
 using osuTK;
 
 namespace KanojoWorks.Screens
@@ -10,7 +10,7 @@ namespace KanojoWorks.Screens
     {
         private readonly KanojoWorksScreen nextScreen;
         private readonly TextFlowContainer textFlow;
-        
+
         public EngineDisclaimer(KanojoWorksScreen nextScreen = null)
         {
             this.nextScreen = nextScreen;
@@ -49,7 +49,7 @@ namespace KanojoWorks.Screens
 
             using (BeginDelayedSequence(5000))
                 textFlow.MoveToOffset(new Vector2(0, 250), 1000, Easing.Out);
-            
+
             textFlow.FadeInFromZero(500).Then(4500).FadeOut(250);
             this.FadeInFromZero(500).Then(5000).FadeOut(250)
                 .Finally(d =>

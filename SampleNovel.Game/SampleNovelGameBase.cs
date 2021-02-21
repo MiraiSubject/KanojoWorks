@@ -1,4 +1,3 @@
-
 using KanojoWorks;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics.Textures;
@@ -9,10 +8,11 @@ namespace SampleNovel
     public class SampleNovelGameBase : KanojoWorksGameBase
     {
         private DependencyContainer dependencies;
+
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
             dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
 
-        protected LargeTextureStore largeTextureStore;
+        protected LargeTextureStore LargeTextureStore;
 
         public SampleNovelGameBase()
         {
@@ -25,8 +25,8 @@ namespace SampleNovel
             var r = new NamespacedResourceStore<byte[]>(new DllResourceStore(typeof(SampleNovelGameBase).Assembly), @"Resources");
             Resources.AddStore(r);
 
-            largeTextureStore = new LargeTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, @"Textures")));
-            dependencies.Cache(largeTextureStore);
+            LargeTextureStore = new LargeTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, @"Textures")));
+            dependencies.Cache(LargeTextureStore);
         }
     }
 }

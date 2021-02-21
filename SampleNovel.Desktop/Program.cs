@@ -12,7 +12,7 @@ namespace SampleNovel.Desktop
         {
             bool useOsuTK = args.Contains(@"--tk");
             using (GameHost host = Host.GetSuitableHost(@"SampleNovel", useOsuTK: useOsuTK))
-            using (osu.Framework.Game game = new SampleGameDesktop())
+            using (Game game = new SampleGameDesktop())
                 host.Run(game);
         }
     }

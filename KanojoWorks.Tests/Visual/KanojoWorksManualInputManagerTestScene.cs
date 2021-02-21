@@ -1,18 +1,18 @@
-using osu.Framework.Testing.Input;
+using KanojoWorks.Graphics.UserInterface;
+using KanojoWorks.Input;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Testing.Input;
 using osuTK;
-using KanojoWorks.Novel.UserInterface;
-using KanojoWorks.Input;
 
 namespace KanojoWorks.Tests.Visual
 {
     public abstract class KanojoWorksManualInputManagerTestScene : KanojoWorksTestScene
     {
         protected override Container<Drawable> Content => content;
-        private Container content;
+        private readonly Container content;
         protected readonly ManualInputManager InputManager;
 
         private readonly KanojoWorksButton buttonTest;

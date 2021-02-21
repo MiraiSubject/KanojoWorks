@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Input.Bindings;
 using KanojoWorks.Graphics.UserInterface;
 using KanojoWorks.Input;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Input.Bindings;
 
 namespace KanojoWorks.Graphics.Containers
 {
@@ -24,7 +24,7 @@ namespace KanojoWorks.Graphics.Containers
         /// <summary>
         /// Whether <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/> should wrap the buttons for selection.
         /// </summary>
-        public bool WrapsButtons 
+        public bool WrapsButtons
         {
             get => flowWrapping;
             set
@@ -41,7 +41,7 @@ namespace KanojoWorks.Graphics.Containers
         /// <summary>
         /// Action that is invoked when <see cref="InputAction.Select"/> is triggered.
         /// </summary>
-        protected Action SelectAction => () => this.Children.FirstOrDefault(s => s.Selected.Value)?.Click();
+        protected Action SelectAction => () => Children.FirstOrDefault(s => s.Selected.Value)?.Click();
 
         private void setSelected(int value)
         {
@@ -75,7 +75,7 @@ namespace KanojoWorks.Graphics.Containers
         /// Select a <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
         /// in a <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/>
         /// </summary>
-        public void Select(T selected) => setSelected(this.IndexOf(selected));
+        public void Select(T selected) => setSelected(IndexOf(selected));
 
         private bool horizontalSelect(InputAction action)
         {
@@ -104,6 +104,7 @@ namespace KanojoWorks.Graphics.Containers
                 case InputAction.Up:
                     selectPrevious();
                     return true;
+
                 case InputAction.Down:
                     selectNext();
                     return true;
@@ -118,12 +119,10 @@ namespace KanojoWorks.Graphics.Containers
 
         private void selectNext()
         {
-            if (selectionIndex == -1 || selectionIndex == this.Count - 1)
+            if ((selectionIndex == -1 || selectionIndex == Count - 1))
             {
                 if (flowWrapping)
                     setSelected(0);
-                else
-                    return;
             }
             else
                 setSelected(selectionIndex + 1);
@@ -134,9 +133,7 @@ namespace KanojoWorks.Graphics.Containers
             if (selectionIndex == -1 || selectionIndex == 0)
             {
                 if (flowWrapping)
-                    setSelected(this.Count -1);
-                else
-                    return;
+                    setSelected(Count - 1);
             }
             else
                 setSelected(selectionIndex - 1);
@@ -165,7 +162,7 @@ namespace KanojoWorks.Graphics.Containers
         /// Use this only to bind to the <see cref="osu.Framework.Bindables.Bindable{T}.ValueChanged" />
         /// of a <see cref="KanojoWorks.Graphics.UserInterface.ControllableButton"/>
         /// </remarks>
-        public void buttonSelectionChanged(T selection, bool isSelected)
+        public void ButtonSelectionChanged(T selection, bool isSelected)
         {
             if (!isSelected)
                 Deselect();

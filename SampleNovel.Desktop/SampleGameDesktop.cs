@@ -7,6 +7,7 @@ namespace SampleNovel.Desktop
         public override void SetHost(GameHost host)
         {
             base.SetHost(host);
+
             switch (host.Window)
             {
                 case OsuTKDesktopWindow desktopGameWindow:

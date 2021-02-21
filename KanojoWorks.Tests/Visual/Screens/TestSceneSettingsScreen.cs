@@ -1,13 +1,13 @@
+using KanojoWorks.Overlays.Settings;
+using KanojoWorks.Themes.Basic;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Screens;
-using KanojoWorks.Overlays.Settings;
-using KanojoWorks.Themes.Basic;
 using osuTK;
 
-namespace KanojoWorks.Tests.Visual.Screens
+namespace KanojoWorks.Tests.Visual.Themes.Screens
 {
     public class TestSceneSettingsScreen : KanojoWorksTestScene
     {
@@ -37,7 +37,7 @@ namespace KanojoWorks.Tests.Visual.Screens
                         new BufferedContainer
                         {
                             RelativeSizeAxes = Axes.Both,
-                            BlurSigma = new osuTK.Vector2(5),
+                            BlurSigma = new Vector2(5),
                             Children = new Drawable[]
                             {
                                 buffered.CreateView().With(d =>
@@ -49,7 +49,7 @@ namespace KanojoWorks.Tests.Visual.Screens
                                 {
                                     RelativeSizeAxes = Axes.Both,
                                     Colour = Colour4.FromHex("8E8E8E"),
-                                    Alpha = 0.5f,
+                                    Alpha = 0.5f
                                 },
                             }
                         },
@@ -64,10 +64,10 @@ namespace KanojoWorks.Tests.Visual.Screens
                                 new AudioSection(),
                                 new NovelSection(),
                                 new DebugSection()
-                            },
-                        },
+                            }
+                        }
                     }
-                },
+                }
             };
 
             settingsContainer.Show();

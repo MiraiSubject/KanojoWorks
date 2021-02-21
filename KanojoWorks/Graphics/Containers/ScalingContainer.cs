@@ -1,11 +1,11 @@
 using JetBrains.Annotations;
+using KanojoWorks.Configuration;
+using KanojoWorks.Screens;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Screens;
-using KanojoWorks.Configuration;
-using KanojoWorks.Screens;
 using osuTK;
 
 namespace KanojoWorks.Graphics.Containers
@@ -13,6 +13,7 @@ namespace KanojoWorks.Graphics.Containers
     public class ScalingContainer : Container
     {
         private Bindable<float> scaleBindable;
+
         // The mode that the container will transform on
         private readonly ScalingMode? targetMode;
         private Bindable<ScalingMode> scalingMode;
@@ -46,7 +47,7 @@ namespace KanojoWorks.Graphics.Containers
 
             scaleBindable = config.GetBindable<float>(KanojoWorksSetting.Scale);
             scaleBindable.ValueChanged += _ => updateSize();
-            scaleBindable.BindValueChanged((v) => updateSize(), true);
+            scaleBindable.BindValueChanged(v => updateSize(), true);
         }
 
         protected override void LoadComplete()
@@ -84,7 +85,7 @@ namespace KanojoWorks.Graphics.Containers
             sizableContainer.ScaleTo(scaleBindable.Value, 200, Easing.OutElastic);
         }
 
-        private class AlwaysInputContainer : DrawSizePreservingFillContainer
+        private sealed class AlwaysInputContainer : DrawSizePreservingFillContainer
         {
             public override bool ReceivePositionalInputAt(Vector2 screenSpacePos) => true;
 

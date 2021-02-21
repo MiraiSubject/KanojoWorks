@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Linq;
 using KanojoWorks.Graphics.UserInterface;
@@ -16,7 +15,7 @@ namespace KanojoWorks.Screens
         private LoadingIndicator loadingIndicator;
         private KanojoWorksScreen loadableScreen;
         private ScheduledDelegate indicatorShow;
-        private KanojoWorksScreen nextScreen;
+        private readonly KanojoWorksScreen nextScreen;
         private ShaderPrecompiler precompiler;
         protected virtual KanojoWorksScreen CreateLoadableScreen() => new EngineDisclaimer(nextScreen);
 

@@ -1,17 +1,14 @@
-
+using KanojoWorks.Graphics.UserInterface;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Shapes;
-
-using KanojoWorks.Graphics.UserInterface;
 
 namespace KanojoWorks.Tests.Visual
 {
     public class KanojoWorksLoadingIndicatorTestScene : KanojoWorksTestScene
     {
-        private LoadingIndicator loading;
         public KanojoWorksLoadingIndicatorTestScene()
         {
+            LoadingIndicator loading;
             Child = new Container
             {
                 RelativeSizeAxes = Axes.Both,

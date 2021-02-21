@@ -4,6 +4,8 @@
     "projects": [
       "KanojoWorks\\KanojoWorks.csproj",
       "KanojoWorks.Tests\\KanojoWorks.Tests.csproj",
+      "SampleGame.Desktop\\SampleGame.Desktop.csproj",
+      "SampleGame.Game\\SampleGame.Game.csproj",
     ]
   }
 }

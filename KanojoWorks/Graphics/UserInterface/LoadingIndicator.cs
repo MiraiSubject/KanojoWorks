@@ -1,8 +1,9 @@
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Textures;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
+using osuTK;
 
 namespace KanojoWorks.Graphics.UserInterface
 {
@@ -15,7 +16,7 @@ namespace KanojoWorks.Graphics.UserInterface
         [BackgroundDependencyLoader]
         private void load(TextureStore textures)
         {
-            Size = new osuTK.Vector2(50);
+            Size = new Vector2(50);
             Child = new Container
             {
                 RelativeSizeAxes = Axes.Both,
@@ -51,9 +52,8 @@ namespace KanojoWorks.Graphics.UserInterface
         }
 
         protected override void PopIn() => this.FadeIn(TRANSITION_DURATION * 2, Easing.OutQuint);
-    
         protected override void PopOut() => this.FadeOut(TRANSITION_DURATION, Easing.OutQuint);
-    
+
         private void animate()
         {
             kanoSprite.FadeIn(TRANSITION_DURATION).Then().Delay(TRANSITION_DURATION).Then().FadeOut(TRANSITION_DURATION).Then().Delay(TRANSITION_DURATION * 3).Loop();

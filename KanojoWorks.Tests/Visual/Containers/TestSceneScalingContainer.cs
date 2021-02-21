@@ -1,11 +1,11 @@
+using KanojoWorks.Configuration;
+using KanojoWorks.Graphics.Containers;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.UserInterface;
 using osuTK;
-using KanojoWorks.Configuration;
-using KanojoWorks.Graphics.Containers;
 
 namespace KanojoWorks.Tests.Visual.Containers
 {
@@ -57,12 +57,12 @@ namespace KanojoWorks.Tests.Visual.Containers
                                     RelativeSizeAxes = Axes.X,
                                     BackgroundColour = Colour4.Pink,
                                     SelectionColour = Colour4.DeepPink,
-                                    Current = configManager.GetBindable<float>(KanojoWorksSetting.Scale)
-                                },
+                                    Current = ConfigManager.GetBindable<float>(KanojoWorksSetting.Scale)
+                                }
                             }
                         }
                     }
-                },
+                }
             };
         }
     }

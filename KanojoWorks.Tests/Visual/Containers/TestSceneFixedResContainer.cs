@@ -1,13 +1,13 @@
+using KanojoWorks.Configuration;
+using KanojoWorks.Graphics.Containers;
 using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
-using KanojoWorks.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Sprites;
 using osuTK;
-using KanojoWorks.Graphics.Containers;
 
 namespace KanojoWorks.Tests.Visual.Containers
 {
@@ -18,7 +18,7 @@ namespace KanojoWorks.Tests.Visual.Containers
         protected override Container<Drawable> Content => content ?? base.Content;
         private Container content;
         private FixedResContainer fixedResContainer;
-        private BindableBool canDisplayBackground = new BindableBool();
+        private readonly BindableBool canDisplayBackground = new BindableBool();
 
         [BackgroundDependencyLoader]
         private void load()
@@ -60,7 +60,7 @@ namespace KanojoWorks.Tests.Visual.Containers
 
             canDisplayBackground.BindTo(fixedResContainer.CanDisplayBackgroundDrawable);
 
-            canDisplayBackground.BindValueChanged((t) =>
+            canDisplayBackground.BindValueChanged(t =>
             {
                 if (t.NewValue)
                     content.Show();
@@ -72,19 +72,19 @@ namespace KanojoWorks.Tests.Visual.Containers
         [Test]
         public void TestMaintainAspectRatio()
         {
-            AddStep("Change scaling mode to maintain aspect ratio", () => configManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.MaintainAspectRatio));
+            AddStep("Change scaling mode to maintain aspect ratio", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.MaintainAspectRatio));
         }
 
         [Test]
         public void TestStretch()
         {
-            AddStep("Change scaling mode to stretch", () => configManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.Stretch));
+            AddStep("Change scaling mode to stretch", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.Stretch));
         }
 
         [Test]
         public void NoScaling()
         {
-            AddStep("Change scaling mode to no scaling", () => configManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling));
+            AddStep("Change scaling mode to no scaling", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling));
         }
     }
 }
