@@ -1,6 +1,6 @@
+using KanojoWorks.Graphics;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
-using KanojoWorks.Graphics;
 
 namespace KanojoWorks.Overlays.Settings
 {
@@ -17,7 +17,6 @@ namespace KanojoWorks.Overlays.Settings
                     Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
                 },
             };
-
         }
     }
 }

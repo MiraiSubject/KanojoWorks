@@ -1,7 +1,7 @@
+using KanojoWorks.Graphics;
+using KanojoWorks.Graphics.UserInterface;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
-using KanojoWorks.Novel.UserInterface;
-using KanojoWorks.Graphics;
 using osuTK;
 
 namespace KanojoWorks.Overlays.Settings

@@ -1,6 +1,6 @@
+using KanojoWorks.Graphics.Containers;
 using osu.Framework.Graphics;
 using osu.Framework.Input.Events;
-using KanojoWorks.Graphics.Containers;
 
 namespace KanojoWorks.Overlays.Settings
 {

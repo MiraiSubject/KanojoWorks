@@ -1,6 +1,6 @@
+using KanojoWorks.Graphics;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
-using KanojoWorks.Graphics;
 
 namespace KanojoWorks.Overlays.Settings
 {
