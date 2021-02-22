@@ -32,7 +32,8 @@ namespace SampleNovel
                     Anchor = Anchor.CentreLeft,
                     Origin = Anchor.CentreLeft,
                     Size = new osuTK.Vector2(450, 600),
-                    Texture = largeTextureStore.Get("example"),
+                    // example texture is not included, this will get removed soon anyway
+                    Texture = LargeTextureStore.Get("example"),
                     Depth = float.MinValue,
                 },
                 new Box
