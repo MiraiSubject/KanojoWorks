@@ -12,7 +12,7 @@ namespace KanojoWorks.Overlays.Settings
             SectionName = "AUDIO";
             Header.Add(new SpriteText
             {
-                Text = "Select Audio Device",
+                Text = "SELECT AUDIO DEVICE",
                 X = 5,
                 Anchor = Anchor.BottomRight,
                 Font = KanojoWorksFont.GetFont(size: 16, weight: FontWeight.Bold)

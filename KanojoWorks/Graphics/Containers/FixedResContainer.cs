@@ -51,7 +51,7 @@ namespace KanojoWorks.Graphics.Containers
             int resolutionHeight = gameHost.Window.ClientSize.Height;
             int resolutionWidth = gameHost.Window.ClientSize.Width;
 
-            if ((resolutionWidth == previousResolution.Width && resolutionHeight == previousResolution.Height))
+            if (resolutionWidth == previousResolution.Width && resolutionHeight == previousResolution.Height)
             {
                 if (!scalingModeChanged)
                     return;
