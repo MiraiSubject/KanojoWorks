@@ -1,11 +1,11 @@
 using System.Linq;
+using KanojoWorks.Graphics.Containers;
+using KanojoWorks.Graphics.UserInterface;
+using KanojoWorks.Input;
 using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Logging;
-using KanojoWorks.Input;
-using KanojoWorks.Novel.UserInterface;
-using KanojoWorks.Graphics.Containers;
 using osuTK;
 
 namespace KanojoWorks.Tests.Visual.Containers

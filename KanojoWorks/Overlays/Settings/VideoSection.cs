@@ -1,14 +1,15 @@
 using System.Drawing;
+using KanojoWorks.Configuration;
+using KanojoWorks.Graphics;
 using osu.Framework.Allocation;
-using osu.Framework.Configuration;
 using osu.Framework.Bindables;
+using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Platform;
-using KanojoWorks.Configuration;
-using KanojoWorks.Graphics;
+using osuTK;
 
 namespace KanojoWorks.Overlays.Settings
 {
@@ -16,7 +17,7 @@ namespace KanojoWorks.Overlays.Settings
     {
         private Bindable<ScalingMode> scalingMode;
         private Bindable<Size> sizeFullscreen;
-        private Bindable<WindowMode> currentwindowMode = new Bindable<WindowMode>();
+        private Bindable<WindowMode> currentWindowMode = new Bindable<WindowMode>();
         private readonly IBindable<Display> currentDisplay = new Bindable<Display>();
         private readonly IBindableList<WindowMode> windowModes = new BindableList<WindowMode>();
         private readonly BindableList<Size> resolutions = new BindableList<Size>(new[] { new Size(9999, 9999) });
@@ -25,7 +26,7 @@ namespace KanojoWorks.Overlays.Settings
         private void load(FrameworkConfigManager config, KanojoWorksConfigManager kwConfig, GameHost host)
         {
             scalingMode = kwConfig.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode);
-            currentwindowMode = config.GetBindable<WindowMode>(FrameworkSetting.WindowMode);
+            currentWindowMode = config.GetBindable<WindowMode>(FrameworkSetting.WindowMode);
             sizeFullscreen = config.GetBindable<Size>(FrameworkSetting.SizeFullscreen);
 
             if (host.Window != null)
@@ -41,7 +42,7 @@ namespace KanojoWorks.Overlays.Settings
                 {
                     AutoSizeAxes = Axes.Both,
                     Direction = FillDirection.Horizontal,
-                    Spacing = new osuTK.Vector2(5),
+                    Spacing = new Vector2(5),
                     Children = new Drawable[]
                     {
                         new SpriteText
@@ -54,14 +55,14 @@ namespace KanojoWorks.Overlays.Settings
                             Width = 200,
                             ItemSource = resolutions,
                             Current = sizeFullscreen
-                        },
+                        }
                     }
                 },
                 new FillFlowContainer
                 {
                     AutoSizeAxes = Axes.Both,
                     Direction = FillDirection.Horizontal,
-                    Spacing = new osuTK.Vector2(5),
+                    Spacing = new Vector2(5),
                     Children = new Drawable[]
                     {
                         new SpriteText
@@ -73,8 +74,8 @@ namespace KanojoWorks.Overlays.Settings
                         {
                             Width = 200,
                             ItemSource = windowModes,
-                            Current = currentwindowMode
-                        },
+                            Current = currentWindowMode
+                        }
                     }
                 },
                 new SpriteText
@@ -91,7 +92,7 @@ namespace KanojoWorks.Overlays.Settings
                 {
                     Text = "Threading Mode",
                     Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
-                },
+                }
             };
         }
 
