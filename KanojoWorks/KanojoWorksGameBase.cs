@@ -48,7 +48,6 @@ namespace KanojoWorks
             var kwResources = new NamespacedResourceStore<byte[]>(new DllResourceStore(typeof(KanojoWorksGameBase).Assembly), @"Resources");
             Resources.AddStore(kwResources);
 
-            AddFont(Resources, @"Fonts/OpenSans/OpenSans-Regular");
             AddFont(Resources, @"Fonts/OpenSans/OpenSans-Light");
 
             dependencies.CacheAs(this);
