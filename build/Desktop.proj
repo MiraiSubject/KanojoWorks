@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.Build.Traversal">
+  <ItemGroup>
+    <ProjectReference Include="..\KanojoWorks\KanojoWorks.csproj" />
+    <ProjectReference Include="..\KanojoWorks.Tests\KanojoWorks.Tests.csproj" />
+    <ProjectReference Include="..\SampleNovel.Game\SampleNovel.Game.csproj" />
+    <ProjectReference Include="..\SampleNovel.Desktop\SampleNovel.Desktop.csproj" />
+  </ItemGroup>
+</Project>

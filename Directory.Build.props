@@ -1,6 +1,21 @@
 <!-- Contains required properties for osu!framework projects. -->
 <Project>
+  <PropertyGroup Label="C#">
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>$(MSBuildThisFileDirectory)app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <!-- <ItemGroup Label="License">
+    <None Include="$(MSBuildThisFileDirectory)kanojoworks.licenseheader">
+      <Link>kanojoworks.licenseheader</Link>
+    </None>
+  </ItemGroup> -->
+  <PropertyGroup Label="Documentation">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Label="Project">
+    <NoWarn>$(NoWarn);NU1701;CA9998</NoWarn>
   </PropertyGroup>
 </Project>
