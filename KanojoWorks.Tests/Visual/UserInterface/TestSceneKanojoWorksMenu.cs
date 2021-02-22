@@ -43,6 +43,5 @@ namespace KanojoWorks.Tests.Visual.UserInterface
         });
 
         private void performAction() => actionPerformed = true;
-
     }
 }

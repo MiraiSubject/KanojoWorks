@@ -1,6 +1,7 @@
 using System;
 using KanojoWorks.Graphics.UserInterface;
 using KanojoWorks.Screens;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -14,9 +15,8 @@ namespace KanojoWorks.Themes.Basic
     {
         private FillFlowContainer<MenuButton> buttonsContainer;
 
-        public override Action OnExit => () => Game.Exit();
-
-        public BasicMainMenu()
+        [BackgroundDependencyLoader]
+        private void load()
         {
             AddRangeInternal(new Drawable[]
             {

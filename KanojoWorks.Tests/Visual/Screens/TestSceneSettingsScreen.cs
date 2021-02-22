@@ -1,9 +1,11 @@
+using KanojoWorks.Graphics.Containers;
 using KanojoWorks.Overlays.Settings;
 using KanojoWorks.Themes.Basic;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Input.Events;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -23,7 +25,6 @@ namespace KanojoWorks.Tests.Visual.Themes.Screens
                 {
                     RelativeSizeAxes = Axes.Both,
                     Child = new ScreenStack(new BasicMainMenu()),
-                    Depth = float.MaxValue
                 },
                 settingsContainer = new SettingsContainer
                 {

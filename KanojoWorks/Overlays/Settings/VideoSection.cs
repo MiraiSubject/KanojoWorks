@@ -1,6 +1,9 @@
+using System;
 using System.Drawing;
+using System.Linq;
 using KanojoWorks.Configuration;
 using KanojoWorks.Graphics;
+using KanojoWorks.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Configuration;
@@ -21,6 +24,7 @@ namespace KanojoWorks.Overlays.Settings
         private readonly IBindable<Display> currentDisplay = new Bindable<Display>();
         private readonly IBindableList<WindowMode> windowModes = new BindableList<WindowMode>();
         private readonly BindableList<Size> resolutions = new BindableList<Size>(new[] { new Size(9999, 9999) });
+        private GameHost host;
 
         [BackgroundDependencyLoader]
         private void load(FrameworkConfigManager config, KanojoWorksConfigManager kwConfig, GameHost host)
@@ -28,6 +32,7 @@ namespace KanojoWorks.Overlays.Settings
             scalingMode = kwConfig.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode);
             currentWindowMode = config.GetBindable<WindowMode>(FrameworkSetting.WindowMode);
             sizeFullscreen = config.GetBindable<Size>(FrameworkSetting.SizeFullscreen);
+            this.host = host;
 
             if (host.Window != null)
             {
@@ -70,18 +75,31 @@ namespace KanojoWorks.Overlays.Settings
                             Text = "Window Mode",
                             Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
                         },
-                        new BasicDropdown<WindowMode>
+                        new KanojoWorksEnumDropdown<WindowMode>
                         {
                             Width = 200,
-                            ItemSource = windowModes,
                             Current = currentWindowMode
                         }
                     }
                 },
-                new SpriteText
+                new FillFlowContainer
                 {
-                    Text = "Scaling Mode",
-                    Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                    AutoSizeAxes = Axes.Both,
+                    Direction = FillDirection.Horizontal,
+                    Spacing = new Vector2(5),
+                    Children = new Drawable[]
+                    {
+                        new SpriteText
+                        {
+                            Text = "Scaling Mode",
+                            Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                        },
+                        new KanojoWorksEnumDropdown<ScalingMode>
+                        {
+                            Width = 300,
+                            Current = scalingMode
+                        }
+                    }
                 },
                 new SpriteText
                 {
@@ -96,7 +114,26 @@ namespace KanojoWorks.Overlays.Settings
             };
         }
 
-        public class ResolutionDropdown : BasicDropdown<Size>
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+
+            currentDisplay.BindValueChanged(display => Schedule(() =>
+            {
+                resolutions.RemoveRange(0, resolutions.Count);
+
+                if (display.NewValue != null)
+                {
+                    resolutions.AddRange(display.NewValue.DisplayModes
+                                                .Where(m => m.Size.Width >= 800 && m.Size.Height >= 600)
+                                                .OrderByDescending(m => Math.Max(m.Size.Height, m.Size.Width))
+                                                .Select(m => m.Size)
+                                                .Distinct());
+                }
+            }), true);
+        }
+
+        public class ResolutionDropdown : KanojoWorksDropdown<Size>
         {
             protected override string GenerateItemText(Size item)
             {

@@ -13,7 +13,7 @@ namespace KanojoWorks.Configuration
         [Description("Stretch to the window's aspect ratio")]
         Stretch,
 
-        [Description("No scaling, if the resolution is lower will scale proportionally")]
+        [Description("No scaling until minimum target resolution is hit")]
         NoScaling
     }
 }
