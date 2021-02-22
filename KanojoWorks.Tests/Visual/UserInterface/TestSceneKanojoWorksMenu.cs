@@ -3,7 +3,6 @@ using osu.Framework.Graphics;
 using KanojoWorks.Graphics.UserInterface;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Testing;
 using osu.Framework.Graphics.Containers;
 
 namespace KanojoWorks.Tests.Visual.UserInterface
