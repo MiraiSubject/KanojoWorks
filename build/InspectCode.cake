@@ -1,5 +1,3 @@
-#addin "nuget:?package=CodeFileSanity&version=0.0.36"
-
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
@@ -26,16 +24,7 @@ Task("InspectCode")
         DotNetCoreTool(rootDirectory.FullPath, "nvika", $@"parsereport ""{inspectcodereport}"" --treatwarningsaserrors");
     });
 
-Task("CodeFileSanity")
-    .Does(() => {
-        ValidateCodeSanity(new ValidateCodeSanitySettings {
-            RootDirectory = rootDirectory.FullPath,
-            IsAppveyorBuild = AppVeyor.IsRunningOnAppVeyor
-        });
-    });
-
 Task("CodeAnalysis")
-    .IsDependentOn("CodeFileSanity")
     .IsDependentOn("InspectCode");
 
 RunTarget(target);

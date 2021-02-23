@@ -8,7 +8,7 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Screens;
 using osu.Framework.Testing;
 
-namespace KanojoWorks.Tests.Visual.Themes.Screens
+namespace KanojoWorks.Tests.Visual.Screens
 {
     public class TestSceneEngineLoader : KanojoWorksTestScene
     {

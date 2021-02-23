@@ -73,7 +73,7 @@ namespace KanojoWorks.Graphics.Containers
                         });
 
                         // TODO: Replace this so consumers can add their own background screen for their scaling containers.
-                        backgroundStack.Push(new SimpleBackgroundScreen());
+                        backgroundStack?.Push(new SimpleBackgroundScreen());
                     }
 
                     backgroundStack.FadeIn(200);

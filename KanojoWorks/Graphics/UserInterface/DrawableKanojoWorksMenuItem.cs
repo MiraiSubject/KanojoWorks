@@ -8,8 +8,6 @@ namespace KanojoWorks.Graphics.UserInterface
 {
     public class DrawableKanojoWorksMenuItem : Menu.DrawableMenuItem
     {
-        private TextContainer text;
-
         public DrawableKanojoWorksMenuItem(MenuItem item)
             : base(item)
         {
@@ -22,7 +20,7 @@ namespace KanojoWorks.Graphics.UserInterface
             BackgroundColourHover = Colour4.White.Opacity(0.1f);
         }
 
-        protected sealed override Drawable CreateContent() => text = CreateTextContainer();
+        protected sealed override Drawable CreateContent() => CreateTextContainer();
         protected virtual TextContainer CreateTextContainer() => new TextContainer();
 
         protected class TextContainer : Container, IHasText

@@ -1,4 +1,3 @@
-using osu.Framework.Graphics;
 using KanojoWorks.Graphics.UserInterface;
 
 namespace KanojoWorks.Tests.Visual.UserInterface
@@ -7,10 +6,10 @@ namespace KanojoWorks.Tests.Visual.UserInterface
     {
         public TestSceneKanojoWorksDropdown()
         {
-            var itemsToAdd = 10;
-            var testItems = new string[itemsToAdd];
+            const int items_to_add = 10;
+            var testItems = new string[items_to_add];
             int i = 0;
-            while (i < itemsToAdd)
+            while (i < items_to_add)
                 testItems[i] = @"test " + i++;
 
             Child = new KanojoWorksDropdown<string>

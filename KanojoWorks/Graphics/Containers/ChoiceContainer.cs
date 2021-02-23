@@ -11,7 +11,7 @@ namespace KanojoWorks.Graphics.Containers
 {
     public class ChoiceContainer : VisibilityContainer, IKeyBindingHandler<InputAction>
     {
-        private const int TRANSITION_DURATION = 200;
+        private const int transition_duration = 200;
         protected ControllableFillFlowContainer<KanojoWorksButton> FillFlow;
         public IEnumerable<KanojoWorksButton> Choices;
 
@@ -46,8 +46,8 @@ namespace KanojoWorks.Graphics.Containers
             State.ValueChanged += s => FillFlow.Deselect();
         }
 
-        protected override void PopIn() => this.FadeIn(TRANSITION_DURATION, Easing.In);
-        protected override void PopOut() => this.FadeOut(TRANSITION_DURATION, Easing.In);
+        protected override void PopIn() => this.FadeIn(transition_duration, Easing.In);
+        protected override void PopOut() => this.FadeOut(transition_duration, Easing.In);
 
         public bool OnPressed(InputAction action) => FillFlow.OnPressed(action);
 

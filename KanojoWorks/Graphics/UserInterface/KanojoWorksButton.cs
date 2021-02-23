@@ -12,7 +12,7 @@ namespace KanojoWorks.Graphics.UserInterface
         protected override Container<Drawable> Content { get; }
         protected Box HoverArea;
         protected Box Background;
-        private SpriteText spriteText;
+        private readonly SpriteText spriteText;
 
         public string Text
         {
@@ -24,10 +24,11 @@ namespace KanojoWorks.Graphics.UserInterface
             }
         }
 
-        private Colour4? backgroundColour;
+        private Colour4 backgroundColour;
 
         public Colour4 BackgroundColour
         {
+            get => backgroundColour;
             set
             {
                 backgroundColour = value;

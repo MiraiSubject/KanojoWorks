@@ -9,9 +9,6 @@ namespace KanojoWorks.Tests.Visual.UserInterface
 {
     public class TestSceneKanojoWorksMenu : KanojoWorksManualInputManagerTestScene
     {
-        private KanojoWorksMenu menu;
-        private bool actionPerformed;
-
         [SetUp]
         public void SetUp() => Schedule(() =>
         {
@@ -27,21 +24,19 @@ namespace KanojoWorks.Tests.Visual.UserInterface
                         RelativeSizeAxes = Axes.Both,
                         Colour = Colour4.DarkGray
                     },
-                    menu = new KanojoWorksMenu(Direction.Vertical, true)
+                    new KanojoWorksMenu(Direction.Vertical, true)
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         Items = new[]
                         {
-                            new MenuItem("option 1", performAction),
-                            new MenuItem("option 2", performAction),
-                            new MenuItem("option 3", performAction),
+                            new MenuItem("option 1", null),
+                            new MenuItem("option 2", null),
+                            new MenuItem("option 3", null),
                         }
                     }
                 }
             };
         });
-
-        private void performAction() => actionPerformed = true;
     }
 }

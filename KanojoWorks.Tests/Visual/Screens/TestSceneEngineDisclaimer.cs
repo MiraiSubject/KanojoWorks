@@ -2,7 +2,7 @@ using KanojoWorks.Screens;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 
-namespace KanojoWorks.Tests.Visual.Themes.Screens
+namespace KanojoWorks.Tests.Visual.Screens
 {
     public class TestSceneEngineDisclaimer : KanojoWorksTestScene
     {

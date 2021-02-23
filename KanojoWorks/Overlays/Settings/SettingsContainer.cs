@@ -1,4 +1,3 @@
-using KanojoWorks.Graphics.Containers;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input.Events;

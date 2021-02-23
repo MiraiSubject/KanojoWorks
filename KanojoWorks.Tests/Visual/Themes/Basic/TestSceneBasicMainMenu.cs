@@ -2,7 +2,7 @@ using KanojoWorks.Themes.Basic;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 
-namespace KanojoWorks.Tests.Visual.Themes.Screens
+namespace KanojoWorks.Tests.Visual.Themes.Basic
 {
     public class TestSceneBasicMainMenu : KanojoWorksTestScene
     {

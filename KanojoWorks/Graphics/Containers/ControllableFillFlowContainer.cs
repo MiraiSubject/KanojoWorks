@@ -21,22 +21,24 @@ namespace KanojoWorks.Graphics.Containers
         /// </summary>
         public bool FirstIsHighlighted = false;
 
+        private bool wrapsButtons = true;
+
         /// <summary>
         /// Whether <see cref="KanojoWorks.Graphics.Containers.ControllableFillFlowContainer{T}"/> should wrap the buttons for selection.
         /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
         public bool WrapsButtons
         {
-            get => flowWrapping;
+            get => wrapsButtons;
             set
             {
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse - Reason: Incorrect analysis
                 if (!FirstIsHighlighted && !value)
                     throw new InvalidOperationException($"Cannot disable wrapping if {nameof(FirstIsHighlighted)} is {value}");
 
-                flowWrapping = value;
+                wrapsButtons = value;
             }
         }
-
-        private bool flowWrapping = true;
 
         /// <summary>
         /// Action that is invoked when <see cref="InputAction.Select"/> is triggered.
@@ -79,6 +81,7 @@ namespace KanojoWorks.Graphics.Containers
 
         private bool horizontalSelect(InputAction action)
         {
+            // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
             switch (action)
             {
                 case InputAction.Left:
@@ -121,7 +124,7 @@ namespace KanojoWorks.Graphics.Containers
         {
             if ((selectionIndex == -1 || selectionIndex == Count - 1))
             {
-                if (flowWrapping)
+                if (wrapsButtons)
                     setSelected(0);
             }
             else
@@ -132,7 +135,7 @@ namespace KanojoWorks.Graphics.Containers
         {
             if (selectionIndex == -1 || selectionIndex == 0)
             {
-                if (flowWrapping)
+                if (wrapsButtons)
                     setSelected(Count - 1);
             }
             else
@@ -141,12 +144,17 @@ namespace KanojoWorks.Graphics.Containers
 
         public bool OnPressed(InputAction action)
         {
-            if (Direction == FillDirection.Horizontal)
-                return horizontalSelect(action);
-            else if (Direction == FillDirection.Vertical)
-                return verticalSelect(action);
+            switch (Direction)
+            {
+                case FillDirection.Horizontal:
+                    return horizontalSelect(action);
 
-            return false;
+                case FillDirection.Vertical:
+                    return verticalSelect(action);
+
+                default:
+                    return false;
+            }
         }
 
         public void OnReleased(InputAction action)

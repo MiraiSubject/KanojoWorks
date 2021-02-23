@@ -1,7 +1,7 @@
+using KanojoWorks.Graphics;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
-using KanojoWorks.Graphics;
 using osuTK;
 
 namespace KanojoWorks.Overlays.Settings
@@ -9,8 +9,9 @@ namespace KanojoWorks.Overlays.Settings
     public class SettingsSection : Container
     {
         protected override Container<Drawable> Content => flowContent;
-        private FillFlowContainer flowContent;
-        private SpriteText spriteText;
+        protected Container Header;
+        private readonly FillFlowContainer flowContent;
+        private readonly SpriteText spriteText;
 
         public string SectionName
         {
@@ -22,7 +23,6 @@ namespace KanojoWorks.Overlays.Settings
             }
         }
 
-        protected Container Header;
         public SettingsSection()
         {
             RelativeSizeAxes = Axes.Y;
@@ -44,7 +44,7 @@ namespace KanojoWorks.Overlays.Settings
                             {
                                 spriteText = new SpriteText
                                 {
-                                    Spacing = new osuTK.Vector2(2),
+                                    Spacing = new Vector2(2),
                                     Font = KanojoWorksFont.GetFont(size: 36, weight: FontWeight.Light)
                                 },
                             }

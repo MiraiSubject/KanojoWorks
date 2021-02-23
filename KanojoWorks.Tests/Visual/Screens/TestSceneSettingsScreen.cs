@@ -1,15 +1,13 @@
-using KanojoWorks.Graphics.Containers;
 using KanojoWorks.Overlays.Settings;
 using KanojoWorks.Themes.Basic;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Input.Events;
 using osu.Framework.Screens;
 using osuTK;
 
-namespace KanojoWorks.Tests.Visual.Themes.Screens
+namespace KanojoWorks.Tests.Visual.Screens
 {
     public class TestSceneSettingsScreen : KanojoWorksTestScene
     {

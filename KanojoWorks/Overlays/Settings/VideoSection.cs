@@ -10,7 +10,6 @@ using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Platform;
 using osuTK;
 
@@ -24,7 +23,6 @@ namespace KanojoWorks.Overlays.Settings
         private readonly IBindable<Display> currentDisplay = new Bindable<Display>();
         private readonly IBindableList<WindowMode> windowModes = new BindableList<WindowMode>();
         private readonly BindableList<Size> resolutions = new BindableList<Size>(new[] { new Size(9999, 9999) });
-        private GameHost host;
 
         [BackgroundDependencyLoader]
         private void load(FrameworkConfigManager config, KanojoWorksConfigManager kwConfig, GameHost host)
@@ -32,7 +30,6 @@ namespace KanojoWorks.Overlays.Settings
             scalingMode = kwConfig.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode);
             currentWindowMode = config.GetBindable<WindowMode>(FrameworkSetting.WindowMode);
             sizeFullscreen = config.GetBindable<Size>(FrameworkSetting.SizeFullscreen);
-            this.host = host;
 
             if (host.Window != null)
             {

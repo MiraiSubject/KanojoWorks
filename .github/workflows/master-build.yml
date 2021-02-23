@@ -1,0 +1,34 @@
+name: Build, Test and Inspect Code
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macOS-latest]
+        dotnet-version: [ "5.0.x" ]
+
+    steps:
+        - uses: actions/checkout@v2
+        - name: Setup .NET Core SDK
+          uses: actions/setup-dotnet@v1.7.2
+          with:
+            dotnet-version: ${{ matrix.dotnet }}
+        - name: Check .NET version
+          run: dotnet --info
+        - name: Restore dependencies
+          run: dotnet restore
+        - name: Restore .NET Tools
+          run: dotnet tool restore
+        - name: Build
+          run: dotnet build --configuration Release --no-restore
+        - name: Test
+          run: dotnet test --no-restore --logger GitHubActions 
+        - name: Inspect Code
+          uses: cake-build/cake-action@v1
+          with:
+            cake-bootstrap: true
+            script-path: build/InspectCode.cake
