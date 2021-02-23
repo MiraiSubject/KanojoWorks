@@ -9,6 +9,18 @@ A cross platform visual novel framework using [osu!framework](https://github.com
 - When running on Windows 7 or 8.1, *[additional prerequisites](https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=net50&pivots=os-windows#dependencies)** may be required to correctly run .NET 5 applications if your operating system is not up-to-date with the latest service packs.
 - When working with the codebase, we recommend using an IDE with intellisense and syntax highlighting, such as [Visual Studio 2019+](https://visualstudio.microsoft.com/vs/), [Jetbrains Rider](https://www.jetbrains.com/rider/) or [Visual Studio Code](https://code.visualstudio.com/).
 
+## Current Status
+
+Package status: None available at the moment.
+TL;DR: A lot is still changing and will probably break. 
+
+- Some basic containers essential for scaling content are available for consumers to use.
+- A container for providing choice in a novel has controller and keyboard support and is mostly functional. 
+- Some basic essential user interface elements are available.
+- An incomplete settings page is available, with currently support for changing window mode, scaling mode and changing the resolution.
+
+**NuGet package support will come once this project is in a more feature complete state, so stay tuned!**
+
 ## Objectives
 
 This framework is intended to provide a user-friendly, but also advanced, visual novel framework. This is also a medium for me to program with a certain end goal in mind and to get to know osu!framework itself better.
