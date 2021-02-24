@@ -41,6 +41,9 @@ namespace KanojoWorks.Graphics.Containers
             gameHost = host;
             scalingMode = configManager.GetBindable<ScalingMode>(KanojoWorksSetting.ScalingMode);
             scalingMode.ValueChanged += _ => updateContainerSize(true);
+
+            // Ensure Container size is updated every frame for smooth resizing.
+            OnUpdate += _ => updateContainerSize();
         }
 
         private void updateContainerSize(bool scalingModeChanged = false)
@@ -111,13 +114,6 @@ namespace KanojoWorks.Graphics.Containers
                 Schedule(() => this.ScaleTo(ratio, RescaleTransformDuration, RescaleEasing));
             else
                 Schedule(() => this.ScaleTo(ratio));
-        }
-
-        // Ensure Container size is updated every frame for smooth resizing.
-        protected override void Update()
-        {
-            base.Update();
-            updateContainerSize();
         }
     }
 }
