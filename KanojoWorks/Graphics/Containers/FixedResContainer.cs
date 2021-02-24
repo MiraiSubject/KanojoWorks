@@ -70,6 +70,8 @@ namespace KanojoWorks.Graphics.Containers
                 case ScalingMode.Stretch:
                     previousResolution = new Size(resolutionWidth, resolutionHeight);
 
+                    CanDisplayBackgroundDrawable.Value = false;
+
                     if (scalingModeChanged)
                         Schedule(() => this.ScaleTo(new Vector2(xRatio, yRatio), RescaleTransformDuration, RescaleEasing));
                     else
