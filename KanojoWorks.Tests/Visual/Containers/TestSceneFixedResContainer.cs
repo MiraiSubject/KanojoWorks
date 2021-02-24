@@ -7,6 +7,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Platform;
 using osuTK;
 
 namespace KanojoWorks.Tests.Visual.Containers
@@ -63,9 +64,9 @@ namespace KanojoWorks.Tests.Visual.Containers
             canDisplayBackground.BindValueChanged(t =>
             {
                 if (t.NewValue)
-                    content.Show();
+                    content.FadeIn(5000, Easing.In);
                 else
-                    content.Hide();
+                    content.FadeOut(5000, Easing.Out);
             });
         }
 
@@ -79,12 +80,18 @@ namespace KanojoWorks.Tests.Visual.Containers
         public void TestStretch()
         {
             AddStep("Change scaling mode to stretch", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.Stretch));
+            AddAssert("Background bindable is off", () => !canDisplayBackground.Value);
         }
 
         [Test]
         public void NoScaling()
         {
             AddStep("Change scaling mode to no scaling", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling));
+            AddStep("Force background display off", () => canDisplayBackground.Value = false);
+            AddAssert("Background bindable is off", () => !canDisplayBackground.Value);
+
+            AddStep("Force background display on", () => canDisplayBackground.Value = true);
+            AddAssert("Background bindable is on", () => canDisplayBackground.Value);
         }
     }
 }
