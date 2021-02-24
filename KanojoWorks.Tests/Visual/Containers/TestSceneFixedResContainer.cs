@@ -1,13 +1,11 @@
 using KanojoWorks.Configuration;
 using KanojoWorks.Graphics.Containers;
 using NUnit.Framework;
-using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Platform;
 using osuTK;
 
 namespace KanojoWorks.Tests.Visual.Containers
@@ -21,8 +19,8 @@ namespace KanojoWorks.Tests.Visual.Containers
         private FixedResContainer fixedResContainer;
         private readonly BindableBool canDisplayBackground = new BindableBool();
 
-        [BackgroundDependencyLoader]
-        private void load()
+        [SetUp]
+        public void Setup() => Schedule(() =>
         {
             base.Content.AddRange(new Drawable[]
             {
@@ -68,7 +66,7 @@ namespace KanojoWorks.Tests.Visual.Containers
                 else
                     content.FadeOut(5000, Easing.Out);
             });
-        }
+        });
 
         [Test]
         public void TestMaintainAspectRatio()
