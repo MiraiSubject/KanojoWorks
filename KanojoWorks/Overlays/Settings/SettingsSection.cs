@@ -2,6 +2,7 @@ using KanojoWorks.Graphics;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Localisation;
 using osuTK;
 
 namespace KanojoWorks.Overlays.Settings
@@ -13,9 +14,9 @@ namespace KanojoWorks.Overlays.Settings
         private readonly FillFlowContainer flowContent;
         private readonly SpriteText spriteText;
 
-        public string SectionName
+        public LocalisableString SectionName
         {
-            get => spriteText?.Text;
+            get => spriteText?.Text ?? default;
             set
             {
                 if (spriteText != null)
