@@ -4,6 +4,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Input.Events;
+using osu.Framework.Localisation;
 
 namespace KanojoWorks.Graphics.UserInterface
 {
@@ -14,9 +15,9 @@ namespace KanojoWorks.Graphics.UserInterface
         protected Box Background;
         private readonly SpriteText spriteText;
 
-        public string Text
+        public LocalisableString Text
         {
-            get => spriteText?.Text;
+            get => spriteText?.Text ?? default;
             set
             {
                 if (spriteText != null)

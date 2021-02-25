@@ -3,6 +3,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
+using osu.Framework.Localisation;
 
 namespace KanojoWorks.Graphics.UserInterface
 {
@@ -25,7 +26,7 @@ namespace KanojoWorks.Graphics.UserInterface
 
         protected class TextContainer : Container, IHasText
         {
-            public string Text
+            public LocalisableString Text
             {
                 get => NormalText.Text;
                 set => NormalText.Text = value;

@@ -10,6 +10,7 @@ using osu.Framework.Configuration;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Localisation;
 using osu.Framework.Platform;
 using osuTK;
 
@@ -132,7 +133,7 @@ namespace KanojoWorks.Overlays.Settings
 
         public class ResolutionDropdown : KanojoWorksDropdown<Size>
         {
-            protected override string GenerateItemText(Size item)
+            protected override LocalisableString GenerateItemText(Size item)
             {
                 if (item == new Size(9999, 9999))
                     return "";

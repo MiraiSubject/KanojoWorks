@@ -1,5 +1,6 @@
 using KanojoWorks.Graphics.Containers;
 using osu.Framework.Graphics;
+using osu.Framework.Localisation;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
@@ -16,7 +17,7 @@ namespace KanojoWorks.Graphics.UserInterface
         {
             private readonly SpriteText spriteText;
 
-            protected override string Label
+            protected override LocalisableString Label
             {
                 get => spriteText.Text;
                 set => spriteText.Text = value;
