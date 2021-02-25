@@ -82,15 +82,9 @@ namespace KanojoWorks.Graphics.UserInterface
         private void selectionChanged(ValueChangedEvent<bool> value)
         {
             if (value.NewValue)
-            {
                 HoverArea.FadeIn(200, Easing.OutQuint);
-                //Content.TweenEdgeEffectTo(selectedTileEffect, 100, Easing.In);
-            }
             else
-            {
                 HoverArea.FadeOut(200, Easing.Out);
-                //Content.TweenEdgeEffectTo(unSelectedTileEffect, 100, Easing.Out);
-            }
         }
 
         protected override bool OnClick(ClickEvent e)
