@@ -38,6 +38,8 @@ namespace KanojoWorks.Overlays.Settings
                 windowModes.BindTo(host.Window.SupportedWindowModes);
             }
 
+            const int max_width = 180;
+
             SectionName = "VIDEO";
             Children = new Drawable[]
             {
@@ -50,6 +52,7 @@ namespace KanojoWorks.Overlays.Settings
                     {
                         new SpriteText
                         {
+                            Width = max_width,
                             Text = "Resolution",
                             Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
                         },
@@ -70,6 +73,7 @@ namespace KanojoWorks.Overlays.Settings
                     {
                         new SpriteText
                         {
+                            Width = max_width,
                             Text = "Window Mode",
                             Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
                         },
@@ -89,25 +93,56 @@ namespace KanojoWorks.Overlays.Settings
                     {
                         new SpriteText
                         {
+                            Width = max_width,
                             Text = "Scaling Mode",
                             Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
                         },
                         new KanojoWorksEnumDropdown<ScalingMode>
                         {
-                            Width = 300,
+                            Width = 200,
                             Current = scalingMode
                         }
                     }
                 },
-                new SpriteText
+                new FillFlowContainer
                 {
-                    Text = "Frame Limiter",
-                    Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                    AutoSizeAxes = Axes.Both,
+                    Direction = FillDirection.Horizontal,
+                    Spacing = new Vector2(5),
+                    Children = new Drawable[]
+                    {
+                        new SpriteText
+                        {
+                            Width = max_width,
+                            Text = "Frame Limiter",
+                            Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                        },
+                        new KanojoWorksEnumDropdown<FrameSync>
+                        {
+                            Width = 200,
+                            Current = config.GetBindable<FrameSync>(FrameworkSetting.FrameSync)
+                        }
+                    }
                 },
-                new SpriteText
+                new FillFlowContainer
                 {
-                    Text = "Threading Mode",
-                    Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                    AutoSizeAxes = Axes.Both,
+                    Direction = FillDirection.Horizontal,
+                    Spacing = new Vector2(5),
+                    Children = new Drawable[]
+                    {
+                        new SpriteText
+                        {
+                            Width = max_width,
+                            Text = "Threading Mode",
+                            Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light)
+                        },
+                        new KanojoWorksEnumDropdown<ExecutionMode>
+                        {
+                            Width = 200,
+                            Current = config.GetBindable<ExecutionMode>(FrameworkSetting.ExecutionMode)
+                        }
+                    }
                 }
             };
         }

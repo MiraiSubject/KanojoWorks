@@ -10,7 +10,7 @@ namespace KanojoWorks.Graphics.UserInterface
         public KanojoWorksMenu(Direction direction, bool topLevelMenu = false)
             : base(direction, topLevelMenu)
         {
-            BackgroundColour = Colour4.White.Opacity(0.01f);
+            BackgroundColour = Colour4.FromHex("C4C4C4");
             ItemsContainer.Padding = new MarginPadding(0);
         }
 

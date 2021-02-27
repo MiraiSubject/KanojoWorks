@@ -16,7 +16,8 @@ namespace KanojoWorks.Tests.Visual.UserInterface
             {
                 Width = 150,
                 Position = new osuTK.Vector2(50, 50),
-                Items = testItems
+                Items = testItems,
+                Scale = new osuTK.Vector2(2)
             };
         }
     }

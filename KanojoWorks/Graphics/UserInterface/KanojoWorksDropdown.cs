@@ -1,9 +1,9 @@
 using KanojoWorks.Graphics.Containers;
 using osu.Framework.Graphics;
-using osu.Framework.Localisation;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
+using osu.Framework.Localisation;
 
 namespace KanojoWorks.Graphics.UserInterface
 {
@@ -25,14 +25,17 @@ namespace KanojoWorks.Graphics.UserInterface
 
             public KanojoWorksDropdownHeader()
             {
-                var font = KanojoWorksFont.GetFont(size: 20, weight: FontWeight.Bold);
-                Foreground.Padding = new MarginPadding { Horizontal = 10, Vertical = 5 };
+                var font = KanojoWorksFont.GetFont(size: 18, weight: FontWeight.Bold);
+                Foreground.Padding = new MarginPadding { Horizontal = 12, Vertical = 5 };
+                BorderColour = Colour4.White;
+                BorderThickness = 2f;
+                Masking = true;
 
                 Child = spriteText = new SpriteText
                 {
                     AlwaysPresent = true,
                     Font = font,
-                    Height = font.Size
+                    Colour = Colour4.Black
                 };
             }
         }
@@ -45,18 +48,51 @@ namespace KanojoWorks.Graphics.UserInterface
 
             protected override ScrollContainer<Drawable> CreateScrollContainer(Direction direction) => new KanojoWorksScrollContainer(direction);
 
+            internal static FontUsage Font => KanojoWorksFont.GetFont(size: 18, weight: FontWeight.Light);
+
+            public KanojoWorksDropdownMenu()
+            {
+                MaxHeight = 200;
+            }
+
             private class DrawableKanojoWorksDropdownMenuItem : DrawableDropdownMenuItem
             {
                 public DrawableKanojoWorksDropdownMenuItem(MenuItem item)
                     : base(item)
                 {
-                    Foreground.Padding = new MarginPadding { Horizontal = 10, Vertical = 5 };
+                    BackgroundColour = Colour4.FromHex("D9D9D9");
+                    BackgroundColourHover = Colour4.FromHex("E5E5E5").Opacity(0.8f);
+                    BackgroundColourSelected = Colour4.FromHex("E5E5E5");
+                    Foreground.Padding = new MarginPadding { Horizontal = 8, Vertical = 5 };
                 }
 
-                protected override Drawable CreateContent() => new SpriteText
+                protected override Drawable CreateContent() => new Content();
+
+                protected new class Content : Container, IHasText
                 {
-                    Font = KanojoWorksFont.GetFont(size: 20, weight: FontWeight.Bold)
-                };
+                    public LocalisableString Text
+                    {
+                        get => Label.Text;
+                        set => Label.Text = value;
+                    }
+
+                    public readonly SpriteText Label;
+
+                    public Content()
+                    {
+                        RelativeSizeAxes = Axes.X;
+                        Height = 15;
+
+                        Children = new Drawable[]
+                        {
+                            Label = new SpriteText
+                            {
+                                Colour = Colour4.Black,
+                                Font = Font
+                            }
+                        };
+                    }
+                }
             }
         }
     }
