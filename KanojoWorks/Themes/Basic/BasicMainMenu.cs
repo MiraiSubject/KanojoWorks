@@ -31,7 +31,7 @@ namespace KanojoWorks.Themes.Basic
 
         public FillMode BackgroundFillMode = FillMode.Fit;
 
-        [Resolved(canBeNull:true)]
+        [Resolved(canBeNull: true)]
         [CanBeNull]
         private KanojoWorksGameBase gameBase { get; set; }
 
