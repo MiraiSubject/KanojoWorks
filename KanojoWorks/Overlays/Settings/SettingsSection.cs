@@ -1,4 +1,5 @@
 using KanojoWorks.Graphics;
+using KanojoWorks.Graphics.Containers;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
@@ -27,38 +28,50 @@ namespace KanojoWorks.Overlays.Settings
         public SettingsSection()
         {
             RelativeSizeAxes = Axes.Y;
-            AutoSizeAxes = Axes.X;
+
+            int headerFontSize = 36;
             AddRangeInternal(new Drawable[]
             {
-                new FillFlowContainer
+                new KanojoWorksScrollContainer
                 {
-                    RelativeSizeAxes = Axes.Y,
-                    AutoSizeAxes = Axes.X,
-                    Direction = FillDirection.Vertical,
-                    Spacing = new Vector2(30),
-                    Children = new Drawable[]
+                    RelativeSizeAxes = Axes.Both,
+                    Child = new FillFlowContainer
                     {
-                        Header = new Container
+                        AutoSizeAxes = Axes.Both,
+                        Direction = FillDirection.Vertical,
+                        Spacing = new Vector2(10),
+                        Children = new Drawable[]
                         {
-                            AutoSizeAxes = Axes.Both,
-                            Children = new Drawable[]
+                            Header = new Container
                             {
-                                spriteText = new SpriteText
+                                AutoSizeAxes = Axes.Y,
+                                RelativeSizeAxes = Axes.X,
+                                Masking = true,
+                                Child = spriteText = new SpriteText
                                 {
                                     Spacing = new Vector2(2),
-                                    Font = KanojoWorksFont.GetFont(size: 36, weight: FontWeight.Light)
-                                },
+                                    Height = headerFontSize,
+                                    Font = KanojoWorksFont.GetFont(size: headerFontSize, weight: FontWeight.Light)
+                                }
+                            },
+                            flowContent = new FillFlowContainer
+                            {
+                                AutoSizeAxes = Axes.Both,
+                                Direction = FillDirection.Vertical,
+                                Spacing = new Vector2(30),
                             }
-                        },
-                        flowContent = new FillFlowContainer
-                        {
-                            AutoSizeAxes = Axes.Both,
-                            Direction = FillDirection.Vertical,
-                            Spacing = new Vector2(30),
                         }
                     }
                 }
             });
+        }
+
+        protected class SettingsName : SpriteText
+        {
+            public SettingsName()
+            {
+                Font = KanojoWorksFont.GetFont(size: 30, weight: FontWeight.Light);
+            }
         }
     }
 }

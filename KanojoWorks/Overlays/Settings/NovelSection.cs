@@ -10,6 +10,7 @@ namespace KanojoWorks.Overlays.Settings
     {
         public NovelSection()
         {
+            Width = 300;
             SectionName = "NOVEL";
             Children = new Drawable[]
             {

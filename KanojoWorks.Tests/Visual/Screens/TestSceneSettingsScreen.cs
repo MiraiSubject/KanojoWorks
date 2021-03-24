@@ -1,3 +1,4 @@
+using KanojoWorks.Graphics.Containers;
 using KanojoWorks.Overlays.Settings;
 using KanojoWorks.Themes.Basic;
 using osu.Framework.Allocation;
@@ -52,17 +53,24 @@ namespace KanojoWorks.Tests.Visual.Screens
                                 },
                             }
                         },
-                        new FillFlowContainer
+                        new KanojoWorksScrollContainer(Direction.Horizontal)
                         {
-                            Padding = new MarginPadding { Bottom = 0, Top = 15, Left = 15, Right = 15 },
-                            Direction = FillDirection.Horizontal,
-                            Spacing = new Vector2(20),
-                            Children = new Drawable[]
+                            RelativeSizeAxes = Axes.Both,
+                            ScrollbarVisible = true,
+                            Child = new FillFlowContainer
                             {
-                                new VideoSection(),
-                                new AudioSection(),
-                                new NovelSection(),
-                                new DebugSection()
+                                AutoSizeAxes = Axes.X,
+                                RelativeSizeAxes = Axes.Y,
+                                Padding = new MarginPadding(15),
+                                Direction = FillDirection.Horizontal,
+                                Spacing = new Vector2(20),
+                                Children = new Drawable[]
+                                {
+                                    new VideoSection(),
+                                    new AudioSection(),
+                                    new NovelSection(),
+                                    new DebugSection()
+                                }
                             }
                         }
                     }
