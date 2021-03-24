@@ -8,16 +8,8 @@ namespace SampleNovel.Desktop
         {
             base.SetHost(host);
 
-            switch (host.Window)
-            {
-                case OsuTKDesktopWindow desktopGameWindow:
-                    desktopGameWindow.Title = Name;
-                    break;
-
-                case SDL2DesktopWindow desktopWindow:
-                    desktopWindow.Title = Name;
-                    break;
-            }
+            var window = (SDL2DesktopWindow)host.Window;
+            window.Title = Name;
         }
     }
 }
