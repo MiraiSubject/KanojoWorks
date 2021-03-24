@@ -18,7 +18,6 @@ namespace KanojoWorks.Screens
         private readonly KanojoWorksScreen nextScreen;
         private ShaderPrecompiler precompiler;
         protected virtual KanojoWorksScreen CreateLoadableScreen() => new EngineDisclaimer(nextScreen);
-
         protected virtual ShaderPrecompiler CreateShaderPrecompiler() => new ShaderPrecompiler();
 
         public EngineLoader(KanojoWorksScreen next = null)
