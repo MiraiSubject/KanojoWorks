@@ -1,4 +1,5 @@
 using System;
+using KanojoWorks.Graphics;
 using KanojoWorks.Graphics.UserInterface;
 using KanojoWorks.Screens;
 using osu.Framework.Allocation;
@@ -6,14 +7,31 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
 using osu.Framework.Screens;
 using osuTK;
+using osuTK.Graphics;
 
 namespace KanojoWorks.Themes.Basic
 {
     public class BasicMainMenu : MainMenu
     {
         private FillFlowContainer<MenuButton> buttonsContainer;
+
+        /// <summary>
+        /// The background color of the Main Menu of the aspect ratio is different.
+        /// </summary>
+        public Colour4 BackgroundColor = Colour4.Black;
+
+        /// <summary>
+        /// The background image of the Main Menu.
+        /// </summary>
+        public Texture BackgroundTexture;
+
+        public FillMode BackgroundFillMode = FillMode.Fit;
+
+        [Resolved]
+        private KanojoWorksGameBase gameBase { get; set; }
 
         [BackgroundDependencyLoader]
         private void load()
@@ -23,7 +41,15 @@ namespace KanojoWorks.Themes.Basic
                 new Box
                 {
                     RelativeSizeAxes = Axes.Both,
-                    Colour = Colour4.FromHex("#3F0222")
+                    Colour = BackgroundColor
+                },
+                new Sprite
+                {
+                    RelativeSizeAxes = Axes.Both,
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    FillMode = BackgroundFillMode,
+                    Texture = BackgroundTexture,
                 },
                 new Container
                 {
@@ -37,8 +63,9 @@ namespace KanojoWorks.Themes.Basic
                         {
                             Anchor = Anchor.TopCentre,
                             Origin = Anchor.TopCentre,
-                            Text = "KanojoWorks",
-                            Font = new FontUsage(size: 50)
+                            Text = gameBase.Name,
+                            Colour = Colour4.White,
+                            Font = KanojoWorksFont.GetFont(size: 40, weight: FontWeight.Bold)
                         },
                         buttonsContainer = new FillFlowContainer<MenuButton>
                         {
@@ -99,10 +126,11 @@ namespace KanojoWorks.Themes.Basic
 
         private class MenuButton : KanojoWorksButton
         {
+            public Color4 ButtonColor = Colour4.FromHex("#00000066");
             public MenuButton()
             {
                 Size = new Vector2(150, 40);
-                BackgroundColour = Colour4.FromHex("#00000066");
+                BackgroundColour = ButtonColor;
                 Anchor = Anchor.Centre;
                 Origin = Anchor.Centre;
             }

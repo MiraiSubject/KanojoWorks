@@ -12,11 +12,13 @@ namespace SampleNovel
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
             dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
 
+        // A large texture store is required for textures that exceed the 1024x1024 atlas.
+        // Examples are background images, CG and high resolution character sprites.
         protected LargeTextureStore LargeTextureStore;
 
         public SampleNovelGameBase()
         {
-            Name = "Sample KanojoWorks Novel";
+            GameName = "SampleNovel";
         }
 
         [BackgroundDependencyLoader]
