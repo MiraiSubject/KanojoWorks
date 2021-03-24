@@ -17,29 +17,23 @@ namespace KanojoWorks.Configuration
             base.InitialiseDefaults();
 
             // Text / Reading defaults
-            Set(KanojoWorksSetting.TextDisplaySpeed, 0.8, 0, 1, 0.01);
-            Set(KanojoWorksSetting.AutoPlaySpeed, 0.8, 0, 1, 0.01);
+            SetDefault(KanojoWorksSetting.TextDisplaySpeed, 0.8, 0, 1, 0.01);
+            SetDefault(KanojoWorksSetting.AutoPlaySpeed, 0.8, 0, 1, 0.01);
 
-            Set(KanojoWorksSetting.SkipUnreadText, false).BindValueChanged(v =>
-            {
-                if (v.NewValue) Set(KanojoWorksSetting.SkipUnreadText, true);
-            });
-
-            Set(KanojoWorksSetting.MarkReadText, true).BindValueChanged(v =>
-            {
-                if (!v.NewValue) Set(KanojoWorksSetting.MarkReadText, false);
-            });
+            // Novel Defaults
+            SetDefault(KanojoWorksSetting.SkipUnreadText, false);
+            SetDefault(KanojoWorksSetting.MarkReadText, true);
 
             // Audio volume defaults
-            Set(KanojoWorksSetting.MasterVolume, 0.8, 0, 1, 0.01);
-            Set(KanojoWorksSetting.MenuVolume, 1.0, 0, 1, 0.01);
-            Set(KanojoWorksSetting.NovelBGMVolume, 0.8, 0, 1, 0.01);
-            Set(KanojoWorksSetting.VoiceMasterVolume, 1, 0, 1, 0.01);
-            Set(KanojoWorksSetting.NovelSFXVolume, 0.95, 0, 1, 0.01);
+            SetDefault(KanojoWorksSetting.MasterVolume, 0.8, 0, 1, 0.01);
+            SetDefault(KanojoWorksSetting.MenuVolume, 1.0, 0, 1, 0.01);
+            SetDefault(KanojoWorksSetting.NovelBGMVolume, 0.8, 0, 1, 0.01);
+            SetDefault(KanojoWorksSetting.VoiceMasterVolume, 1, 0, 1, 0.01);
+            SetDefault(KanojoWorksSetting.NovelSFXVolume, 0.95, 0, 1, 0.01);
 
             // Scaling defaults
-            Set(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling);
-            Set(KanojoWorksSetting.Scale, 0.8f, 0.2f, 1f);
+            SetDefault(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling);
+            SetDefault(KanojoWorksSetting.Scale, 0.8f, 0.2f, 1f);
         }
     }
 
