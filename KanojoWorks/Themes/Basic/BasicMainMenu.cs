@@ -86,7 +86,8 @@ namespace KanojoWorks.Themes.Basic
                                 new MenuButton
                                 {
                                     Text = "Load",
-                                    Action = OnLoadGame
+                                    Action = OnLoadGame,
+                                    ButtonColor = Colour4.Red
                                 },
                                 new MenuButton
                                 {
@@ -127,6 +128,7 @@ namespace KanojoWorks.Themes.Basic
         private class MenuButton : KanojoWorksButton
         {
             public Color4 ButtonColor = Colour4.FromHex("#00000066");
+
             public MenuButton()
             {
                 Size = new Vector2(150, 40);

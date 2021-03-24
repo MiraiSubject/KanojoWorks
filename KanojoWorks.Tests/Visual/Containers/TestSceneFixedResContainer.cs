@@ -71,20 +71,20 @@ namespace KanojoWorks.Tests.Visual.Containers
         [Test]
         public void TestMaintainAspectRatio()
         {
-            AddStep("Change scaling mode to maintain aspect ratio", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.MaintainAspectRatio));
+            AddStep("Change scaling mode to maintain aspect ratio", () => ConfigManager.SetValue(KanojoWorksSetting.ScalingMode, ScalingMode.MaintainAspectRatio));
         }
 
         [Test]
         public void TestStretch()
         {
-            AddStep("Change scaling mode to stretch", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.Stretch));
+            AddStep("Change scaling mode to stretch", () => ConfigManager.SetValue(KanojoWorksSetting.ScalingMode, ScalingMode.Stretch));
             AddAssert("Background bindable is off", () => !canDisplayBackground.Value);
         }
 
         [Test]
         public void NoScaling()
         {
-            AddStep("Change scaling mode to no scaling", () => ConfigManager.Set(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling));
+            AddStep("Change scaling mode to no scaling", () => ConfigManager.SetValue(KanojoWorksSetting.ScalingMode, ScalingMode.NoScaling));
             AddStep("Force background display off", () => canDisplayBackground.Value = false);
             AddAssert("Background bindable is off", () => !canDisplayBackground.Value);
 
