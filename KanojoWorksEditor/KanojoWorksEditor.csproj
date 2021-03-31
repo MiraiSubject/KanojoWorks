@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Project">
+    <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+    <OutputType>Library</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>KanojoWorksEditor</RootNamespace>
+    <AssemblyName>KanojoWorksEditor</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Label="Sourcelink3" Condition=" '$(EnableSourceLink)' == 'true' ">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+  <ItemGroup Label="Project References">
+    <ProjectReference Include="..\KanojoWorks\KanojoWorks.csproj" />
+    <EmbeddedResource Include="Resources\**\*" />
+  </ItemGroup>
+</Project>
