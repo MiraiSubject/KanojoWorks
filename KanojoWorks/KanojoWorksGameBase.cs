@@ -1,10 +1,13 @@
+using System.Linq;
 using KanojoWorks.Configuration;
 using KanojoWorks.Graphics.Containers;
+using KanojoWorks.Platform;
 using osu.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Input.Handlers.Mouse;
 using osu.Framework.IO.Stores;
 using osu.Framework.Platform;
 using osuTK;
@@ -55,8 +58,13 @@ namespace KanojoWorks
         }
 
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(GameHost host)
         {
+            var mouseHandler = host.AvailableInputHandlers.OfType<MouseHandler>().FirstOrDefault();
+
+            if (mouseHandler != null)
+                mouseHandler.UseRelativeMode.Value = false;
+
             var kwResources = new NamespacedResourceStore<byte[]>(new DllResourceStore(typeof(KanojoWorksGameBase).Assembly), @"Resources");
             Resources.AddStore(kwResources);
 
