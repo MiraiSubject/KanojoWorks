@@ -484,3 +484,4 @@ inspectcode.xml
 # inspectcode
 inspectcodereport.xml
 inspectcode
+*.DS_Store

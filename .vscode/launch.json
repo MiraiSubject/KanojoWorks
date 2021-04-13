@@ -38,6 +38,74 @@
             "console": "internalConsole"
         },
         {
+            "name": "Editor VisualTests (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "${workspaceRoot}/KanojoWorksEditor.Tests/bin/Debug/net5.0/KanojoWorksEditor.Tests.dll",
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build (Editor Tests, Debug)",
+            "linux": {
+                "env": {
+                    "LD_LIBRARY_PATH": "${workspaceRoot}/KanojoWorksEditor.Tests/bin/Debug/net5.0:${env:LD_LIBRARY_PATH}"
+                }
+            },
+            "console": "internalConsole"
+        },
+        {
+            "name": "Editor VisualTests (Release)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "${workspaceRoot}/KanojoWorksEditor.Tests/bin/Release/net5.0/KanojoWorksEditor.Tests.dll",
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build (Editor Tests, Release)",
+            "linux": {
+                "env": {
+                    "LD_LIBRARY_PATH": "${workspaceRoot}/KanojoWorksEditor.Tests/bin/Release/net5.0:${env:LD_LIBRARY_PATH}"
+                }
+            },
+            "console": "internalConsole"
+        },
+        {
+            "name": "Editor (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "${workspaceRoot}/KanojoWorksEditor.Desktop/bin/Debug/net5.0/KanojoWorksEditor.Desktop.dll",
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build (Editor, Debug)",
+            "linux": {
+                "env": {
+                    "LD_LIBRARY_PATH": "${workspaceRoot}/KanojoWorksEditor.Desktop/bin/Debug/net5.0:${env:LD_LIBRARY_PATH}"
+                }
+            },
+            "console": "internalConsole"
+        },
+        {
+            "name": "Editor (Release)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": [
+                "${workspaceRoot}/KanojoWorksEditor.Desktop/bin/Release/net5.0/KanojoWorksEditor.Desktop.dll",
+            ],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Build (Editor, Debug)",
+            "linux": {
+                "env": {
+                    "LD_LIBRARY_PATH": "${workspaceRoot}/KanojoWorksEditor.Desktop/bin/Release/net5.0:${env:LD_LIBRARY_PATH}"
+                }
+            },
+            "console": "internalConsole"
+        },
+        {
             "name": "SampleNovel (Debug)",
             "type": "coreclr",
             "request": "launch",

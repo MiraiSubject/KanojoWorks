@@ -32,6 +32,66 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "Build (Editor, Debug)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "-p:Configuration=Debug",
+                "-p:GenerateFullPaths=true",
+                "-m",
+                "-verbosity:m",
+                "KanojoWorksEditor.Desktop"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build (Editor, Release)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "-p:Configuration=Release",
+                "-p:GenerateFullPaths=true",
+                "-m",
+                "-verbosity:m",
+                "KanojoWorksEditor.Desktop"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build (Editor Tests, Debug)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "-p:Configuration=Debug",
+                "-p:GenerateFullPaths=true",
+                "-m",
+                "-verbosity:m",
+                "KanojoWorksEditor.Tests"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build (Editor Tests, Release)",
+            "type": "shell",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "-p:Configuration=Release",
+                "-p:GenerateFullPaths=true",
+                "-m",
+                "-verbosity:m",
+                "KanojoWorksEditor.Desktop"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "Build (SampleNovel, Debug)",
             "type": "shell",
             "command": "dotnet",
