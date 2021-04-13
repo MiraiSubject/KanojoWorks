@@ -1,10 +1,8 @@
-using System;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Logging;
 using osuTK;
 
 namespace KanojoWorksEditor.Components
@@ -47,9 +45,9 @@ namespace KanojoWorksEditor.Components
                         {
                             RelativeSizeAxes = Axes.X,
                             AutoSizeAxes = Axes.Y,
-                            Child = new AddDecisionDrawable
+                            Child = new AddDecisionContainer
                             {
-                                AddAction = () => choiceContent.Add(new DecisionEntry())
+                                Action = () => choiceContent.Add(new DecisionEntry())
                             }
                         }
                     }
@@ -57,42 +55,31 @@ namespace KanojoWorksEditor.Components
             });
         }
 
-        private class AddDecisionDrawable : CompositeDrawable
+        private class AddDecisionContainer : ClickableContainer
         {
-            private ClickableContainer container;
-            public Action AddAction
-            {
-                get => container.Action;
-                set => container.Action = value;
-            }
-
-            public AddDecisionDrawable()
+            public AddDecisionContainer()
             {
                 RelativeSizeAxes = Axes.X;
                 Height = 30;
-                AddInternal(container = new ClickableContainer
+                Child = new Container
                 {
                     RelativeSizeAxes = Axes.Both,
-                    Child = new Container
+                    Children = new Drawable[]
                     {
-                        RelativeSizeAxes = Axes.Both,
-                        Children = new Drawable[]
+                        new Box
                         {
-                            new Box
-                            {
-                                RelativeSizeAxes = Axes.Both,
-                                Colour = Colour4.Red
-                            },
-                            new SpriteIcon
-                            {
-                                Anchor = Anchor.Centre,
-                                Origin = Anchor.Centre,
-                                Size = new Vector2(20),
-                                Icon = FontAwesome.Solid.Plus
-                            }
+                            RelativeSizeAxes = Axes.Both,
+                            Colour = Colour4.Red
+                        },
+                        new SpriteIcon
+                        {
+                            Anchor = Anchor.Centre,
+                            Origin = Anchor.Centre,
+                            Size = new Vector2(20),
+                            Icon = FontAwesome.Solid.Plus
                         }
                     }
-                });
+                };
             }
         }
 
