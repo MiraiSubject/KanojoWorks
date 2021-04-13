@@ -1,7 +1,6 @@
 using System.Linq;
 using KanojoWorks.Configuration;
 using KanojoWorks.Graphics.Containers;
-using KanojoWorks.Platform;
 using osu.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
