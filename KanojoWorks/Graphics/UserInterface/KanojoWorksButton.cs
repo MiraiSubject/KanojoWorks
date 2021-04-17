@@ -37,6 +37,16 @@ namespace KanojoWorks.Graphics.UserInterface
             }
         }
 
+        public Colour4 TextColour
+        {
+            get => spriteText?.Colour ?? Colour4.Black;
+            set
+            {
+                if (spriteText != null)
+                    spriteText.Colour = value;
+            }
+        }
+
         public KanojoWorksButton()
         {
             Height = 40;
