@@ -11,7 +11,6 @@ namespace KanojoWorksEditor.Components
     {
         private FillFlowContainer choiceContent;
 
-
         [BackgroundDependencyLoader]
         private void load()
         {
