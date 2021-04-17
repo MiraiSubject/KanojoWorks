@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using KanojoWorks.Graphics;
 using KanojoWorks.Graphics.UserInterface;
 using KanojoWorks.Screens;
@@ -30,7 +31,8 @@ namespace KanojoWorks.Themes.Basic
 
         public FillMode BackgroundFillMode = FillMode.Fit;
 
-        [Resolved]
+        [Resolved(canBeNull: true)]
+        [CanBeNull]
         private KanojoWorksGameBase gameBase { get; set; }
 
         [BackgroundDependencyLoader]
@@ -63,7 +65,7 @@ namespace KanojoWorks.Themes.Basic
                         {
                             Anchor = Anchor.TopCentre,
                             Origin = Anchor.TopCentre,
-                            Text = gameBase.Name,
+                            Text = gameBase?.Name,
                             Colour = Colour4.White,
                             Font = KanojoWorksFont.GetFont(size: 40, weight: FontWeight.Bold)
                         },
@@ -86,7 +88,8 @@ namespace KanojoWorks.Themes.Basic
                                 new MenuButton
                                 {
                                     Text = "Load",
-                                    Action = OnLoadGame
+                                    Action = OnLoadGame,
+                                    ButtonColor = Colour4.Red
                                 },
                                 new MenuButton
                                 {
@@ -127,6 +130,7 @@ namespace KanojoWorks.Themes.Basic
         private class MenuButton : KanojoWorksButton
         {
             public Color4 ButtonColor = Colour4.FromHex("#00000066");
+
             public MenuButton()
             {
                 Size = new Vector2(150, 40);

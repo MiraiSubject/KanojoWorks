@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using osu.Framework;
 using osu.Framework.Platform;
 
@@ -10,8 +9,7 @@ namespace SampleNovel.Desktop
         [STAThread]
         public static void Main(string[] args)
         {
-            bool useOsuTK = args.Contains(@"--tk");
-            using (GameHost host = Host.GetSuitableHost(@"SampleNovel", useOsuTK: useOsuTK))
+            using (GameHost host = Host.GetSuitableHost(@"SampleNovel"))
             using (Game game = new SampleGameDesktop())
                 host.Run(game);
         }
