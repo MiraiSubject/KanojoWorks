@@ -21,7 +21,7 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
   <ItemGroup Label="Package References">
-    <PackageReference Include="ppy.osu.Framework" Version="2021.410.0" />
+    <PackageReference Include="ppy.osu.Framework" Version="2021.507.0" />
     <EmbeddedResource Include="Resources/**/*" />
   </ItemGroup>
 </Project>
